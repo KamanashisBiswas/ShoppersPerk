@@ -1,0 +1,123 @@
+{
+  "siteLogo": "/images/logo/logo.png",
+  "navItems": [
+    { "id": 1, "name": "Home", "href": "/" },
+    { "id": 2, "name": "Skincare", "href": "/skincare" }
+  ],
+  "carouselSlides": [
+    {
+      "id": 1,
+      "title": "Professional",
+      "subtitle": "Makeup",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore",
+      "image": "/images/carousel/slide1.jpg",
+      "href": "/makeup"
+    },
+    {
+      "id": 2,
+      "title": "Premium",
+      "subtitle": "Skincare",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore",
+      "image": "/images/carousel/slide2.jpg",
+      "href": "/skincare"
+    },
+    {
+      "id": 3,
+      "title": "Luxury",
+      "subtitle": "Fragrance",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore",
+      "image": "/images/carousel/slide3.jpg",
+      "href": "/fragrance"
+    },
+    {
+      "id": 4,
+      "title": "Natural",
+      "subtitle": "Haircare",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore",
+      "image": "/images/carousel/slide4.jpg",
+      "href": "/haircare"
+    },
+    {
+      "id": 5,
+      "title": "Special",
+      "subtitle": "Collection",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore",
+      "image": "/images/carousel/slide5.jpg",
+      "href": "/collection"
+    },
+    {
+      "id": 6,
+      "title": "Exclusive",
+      "subtitle": "Offers",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore",
+      "image": "/images/carousel/slide6.jpg",
+      "href": "/offers"
+    }
+  ],
+  "offerCategories": [
+    { "id": 1, "name": "Skincare" },
+    { "id": 2, "name": "Haircare" },
+    { "id": 3, "name": "Makeup" },
+    { "id": 4, "name": "Fragrance" }
+  ],
+  "footer": {
+    "socialLinks": [
+      { "name": "Facebook", "icon": "facebook", "href": "#" },
+      { "name": "Instagram", "icon": "instagram", "href": "#" },
+      { "name": "YouTube", "icon": "youtube", "href": "#" },
+      { "name": "WhatsApp", "icon": "whatsapp", "href": "#" }
+    ],
+    "paymentMethods": [
+      { "name": "Visa", "image": "/images/payment/visa.png" },
+      { "name": "Mastercard", "image": "/images/payment/mastercard.png" },
+      { "name": "Rocket", "image": "/images/payment/rocket.png" },
+      { "name": "Bkash", "image": "/images/payment/bkash.png" },
+      { "name": "Nagad", "image": "/images/payment/nagad.png" }
+    ],
+    "columns": [
+      {
+        "title": "About",
+        "links": [
+          { "name": "About Us", "href": "/about" },
+          { "name": "Categories", "href": "/categories" },
+          { "name": "Blog", "href": "/blog" },
+          { "name": "FAQ", "href": "/faq" },
+          { "name": "Contacts", "href": "/contacts" }
+        ]
+      },
+      {
+        "title": "Categories",
+        "links": [
+          { "name": "Home", "href": "/" },
+          { "name": "Skincare", "href": "/skincare" },
+          { "name": "Makeup", "href": "/makeup" },
+          { "name": "Haircare", "href": "/haircare" },
+          { "name": "Fragrance", "href": "/fragrance" }
+        ]
+      },
+      {
+        "title": "Useful Links",
+        "links": [
+          { "name": "Privacy policy", "href": "/privacy-policy" },
+          { "name": "Terms of use", "href": "/terms-of-use" },
+          { "name": "Support", "href": "/support" },
+          { "name": "Shipping details", "href": "/shipping-details" },
+          { "name": "Information", "href": "/information" }
+        ]
+      }
+    ],
+    "contactInfo": {
+      "locations": [
+        "125 Oxford Street, Suite 300\nLondon, W1D 2LT,\nUnited Kingdom",
+        "200 Deansgate, Suite 410\nManchester, M3 3NW,\nUnited Kingdom"
+      ],
+      "phones": ["+0000222333", "+0000222333"],
+      "emails": ["Shopperspark@Example.com", "Info@Example.com"]
+    },
+    "countries": [
+      { "name": "Bangladesh", "image": "/images/countryImg/bd.png" },
+      { "name": "United Kingdom", "image": "/images/countryImg/uk.png" }
+    ],
+    "copyright": "Copyright - Shoppers park | Designed by PerkTech Solutions"
+  }
+}
