@@ -2,7 +2,16 @@
   "siteLogo": "/images/logo/logo.png",
   "navItems": [
     { "id": 1, "name": "Home", "href": "/" },
-    { "id": 2, "name": "Skincare", "href": "/skincare" }
+    { "id": 2, "name": "Skincare", "href": "/skincare" },
+    { "id": 3, "name": "Makeup", "href": "/makeup" },
+    { "id": 4, "name": "Haircare", "href": "/haircare" },
+    { "id": 5, "name": "Fragrance", "href": "/fragrance" },
+    { "id": 6, "name": "Wedding", "href": "/wedding" },
+    { "id": 7, "name": "Festival", "href": "/festival" },
+    { "id": 8, "name": "Birthday", "href": "/birthday" },
+    { "id": 9, "name": "Baby", "href": "/baby" },
+    { "id": 10, "name": "Men", "href": "/men" },
+    { "id": 11, "name": "Clearance sell", "href": "/clearance" }
   ],
   "carouselSlides": [
     {

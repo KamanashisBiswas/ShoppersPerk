@@ -73,15 +73,15 @@ export default function Carousel() {
       </div>
 
       {/* Text Content */}
-      <div className="absolute top-1/2 right-4 lg:right-20 -translate-y-1/2 z-20 text-right text-[#AC1754] w-full px-4 lg:w-auto lg:max-w-2xl font-fredoka pointer-events-none">
+      <div className="absolute top-1/2 right-4 lg:right-20 -translate-y-1/2 z-20 text-right text-white w-full px-4 lg:w-auto lg:max-w-2xl font-fredoka pointer-events-none">
         <div className="pointer-events-auto">
-          <h2 className="text-3xl md:text-5xl lg:text-[4rem] font-light leading-tight opacity-90 wrap-break-word">
+          <h2 className="text-3xl md:text-5xl lg:text-[4rem] font-light leading-tight opacity-90 wrap-break-word md:mt-40">
             {currentData.title}
           </h2>
-          <h3 className="text-4xl md:text-6xl lg:text-[5rem] font-medium leading-none mb-4 lg:mb-6 italicwrap-break-word">
+          <h3 className="text-4xl md:text-6xl lg:text-[5rem] font-medium leading-none mb-4 lg:mb-6 italic wrap-break-word">
             {currentData.subtitle}
           </h3>
-          <p className="text-[#AC1754] text-sm md:text-lg leading-relaxed mb-6 lg:mb-10 ml-auto max-w-xs lg:max-w-sm">
+          <p className="text-white text-sm md:text-lg leading-relaxed mb-6 lg:mb-10 ml-auto max-w-xs lg:max-w-sm">
             {currentData.description}
           </p>
 
@@ -89,14 +89,14 @@ export default function Carousel() {
             <SocialMedia />
           </div>
         </div>
-        {/* <div className="flex justify-end mb-8">
+        <div className="flex justify-end mt-12 mb-8 pointer-events-auto">
           <Link
             href={(currentData as any).href || "/"}
             className="bg-[#F37199] text-white px-8 py-2 rounded shadow-md hover:bg-[#d65d83] transition-colors font-medium text-lg"
           >
             Explore
           </Link>
-        </div> */}
+        </div>
       </div>
 
       {/* Slide Indicators */}
