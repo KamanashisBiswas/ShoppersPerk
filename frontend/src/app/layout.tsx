@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fredoka } from "next/font/google";
-import "./globals.css";
+import "../styles/globals.css";
 
 const fredoka = Fredoka({
   subsets: ["latin"],
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} font-fredoka antialiased`}
         suppressHydrationWarning
       >
         {children}
