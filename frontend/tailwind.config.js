@@ -12,7 +12,7 @@ module.exports = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        fredoka: ["var(--font-fredoka)"],
+        fredoka: ["var(--font-fredoka)", "sans-serif"],
       },
     },
   },

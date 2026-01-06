@@ -13,7 +13,9 @@ export default function OffersSection() {
   return (
     <section className="w-full py-16 px-4 bg-linear-to-b from-white to-pink-50">
       <div className="container mx-auto">
-        <p className="text-center text-[18px] font-normal mt-10 mb-5">Offer</p>
+        <p className="text-center text-[18px] font-normal md:mt-10 mb-5">
+          Offers
+        </p>
         <SectionTitle title="Today's Best Offers Inside" className="mb-12" />
         <CategoryTabs
           categories={offersData.offerCategories}

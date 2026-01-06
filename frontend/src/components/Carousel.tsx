@@ -26,6 +26,14 @@ export default function Carousel() {
 
   const currentData = slides[currentSlide];
 
+  interface CarouselSlide {
+    image: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    href?: string;
+  }
+
   return (
     <div className="relative w-full h-full overflow-hidden">
       {/* Full Screen Background Image */}
@@ -75,13 +83,13 @@ export default function Carousel() {
       {/* Text Content */}
       <div className="absolute top-1/2 right-4 lg:right-20 -translate-y-1/2 z-20 text-right text-white w-full px-4 lg:w-auto lg:max-w-2xl font-fredoka pointer-events-none">
         <div className="pointer-events-auto">
-          <h2 className="text-3xl md:text-5xl lg:text-[4rem] font-light leading-tight opacity-90 wrap-break-word md:mt-40">
+          <h2 className="text-2xl md:text-5xl lg:text-[4rem] font-light leading-tight opacity-90 wrap-break-word mt-25 md:mt-40">
             {currentData.title}
           </h2>
-          <h3 className="text-4xl md:text-6xl lg:text-[5rem] font-medium leading-none mb-4 lg:mb-6 italic wrap-break-word">
+          <h3 className="text-3xl md:text-6xl lg:text-[5rem] font-medium leading-none mb-2 md:mb-6 italic wrap-break-word">
             {currentData.subtitle}
           </h3>
-          <p className="text-white text-sm md:text-lg leading-relaxed mb-6 lg:mb-10 ml-auto max-w-xs lg:max-w-sm">
+          <p className="text-white text-xs md:text-lg leading-relaxed mb-4 md:mb-10 ml-auto max-w-[200px] md:max-w-sm">
             {currentData.description}
           </p>
 
@@ -89,10 +97,10 @@ export default function Carousel() {
             <SocialMedia />
           </div>
         </div>
-        <div className="flex justify-end mt-12 mb-8 pointer-events-auto">
+        <div className="flex justify-end mt-6 md:mt-12 mb-4 md:mb-8 pointer-events-auto">
           <Link
-            href={(currentData as any).href || "/"}
-            className="bg-[#F37199] text-white px-8 py-2 rounded shadow-md hover:bg-[#d65d83] transition-colors font-medium text-lg"
+            href={(currentData as CarouselSlide).href || "/"}
+            className="bg-[#F37199] text-white px-6 py-1.5 md:px-8 md:py-2 rounded-md shadow-md hover:bg-[#d65d83] transition-colors font-medium text-sm md:text-lg"
           >
             Explore
           </Link>

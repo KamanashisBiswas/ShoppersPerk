@@ -62,7 +62,7 @@ export default function Footer() {
         </div>
 
         {/* Middle Section - Links & Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 mb-16 text-center lg:text-left">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 mb-16 text-left">
           {/* Columns 1-3: Links */}
           {footer.columns.map((col, idx) => (
             <div key={idx}>
@@ -89,7 +89,7 @@ export default function Footer() {
             <h3 className="text-[#a91d5b] text-lg font-medium mb-6">
               Location
             </h3>
-            <div className="space-y-6 flex flex-col items-center lg:items-start">
+            <div className="space-y-6 flex flex-col items-start">
               {footer.contactInfo.locations.map((loc, idx) => (
                 <div key={idx} className="flex gap-3 text-left max-w-xs">
                   <FaMapMarkerAlt
@@ -105,7 +105,7 @@ export default function Footer() {
           </div>
 
           {/* Column 5: Phone & Email */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="flex flex-col items-start text-left">
             <h3 className="text-[#a91d5b] text-lg font-medium mb-6">
               Phone No
             </h3>
@@ -149,7 +149,9 @@ export default function Footer() {
                   className="object-cover"
                 />
               </div>
-              <span className="font-medium text-[16px] text-[#F37199]">{country.name}</span>
+              <span className="font-medium text-[16px] text-[#F37199]">
+                {country.name}
+              </span>
             </div>
           ))}
         </div>

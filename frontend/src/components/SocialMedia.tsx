@@ -46,7 +46,7 @@ export default function SocialMedia({ className = "" }: SocialMediaProps) {
   ];
 
   return (
-    <div className={`flex gap-4 ${className}`}>
+    <div className={`flex gap-3 md:gap-4 ${className}`}>
       {socialLinks.map((social) => {
         const Icon = social.icon;
         return (
@@ -55,10 +55,10 @@ export default function SocialMedia({ className = "" }: SocialMediaProps) {
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-md ${social.bgClass}`}
+            className={`w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-md ${social.bgClass}`}
             aria-label={social.name}
           >
-            <Icon className={`text-xl ${social.textClass}`} />
+            <Icon className={`text-sm md:text-xl ${social.textClass}`} />
           </a>
         );
       })}
