@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SocialMedia from "./SocialMedia";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   const { footer, siteLogo } = footerData;
@@ -13,7 +14,13 @@ export default function Footer() {
     <footer className="bg-pink-50/50 pt-16 pb-8 font-fredoka">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Top Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-center mb-16 gap-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col lg:flex-row justify-between items-center mb-16 gap-8"
+        >
           {/* Social Sharing */}
           <div className="text-center lg:text-left">
             <h3 className="text-[#a91d5b] text-sm md:text-base font-medium mb-4">
@@ -59,10 +66,16 @@ export default function Footer() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Middle Section - Links & Info */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 mb-16 text-left">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 mb-16 text-left"
+        >
           {/* Columns 1-3: Links */}
           {footer.columns.map((col, idx) => (
             <div key={idx}>
@@ -132,10 +145,16 @@ export default function Footer() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bottom Section - Flags */}
-        <div className="flex justify-center gap-6 mb-8 text-sm md:text-base">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex justify-center gap-6 mb-8 text-sm md:text-base"
+        >
           {footer.countries.map((country, idx) => (
             <div
               key={idx}
@@ -154,7 +173,7 @@ export default function Footer() {
               </span>
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Copyright */}
         <div className="border-t border-pink-100 pt-8 text-center">

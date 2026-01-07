@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SocialMedia from "./SocialMedia";
 import Navbar from "./Navbar";
 import carouselData from "@/data/data.json";
@@ -37,16 +38,25 @@ export default function Carousel() {
   return (
     <div className="relative w-full h-full overflow-hidden">
       {/* Full Screen Background Image */}
-      <div className="absolute inset-0 w-full h-full">
-        <Image
-          src={currentData.image}
-          alt="Carousel Slide"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-      </div>
+      <AnimatePresence>
+        <motion.div
+          key={currentSlide}
+          className="absolute inset-0 w-full h-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <Image
+            src={currentData.image}
+            alt="Carousel Slide"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        </motion.div>
+      </AnimatePresence>
 
       {/* Navbar */}
       <div className="relative z-30 pt-6 flex justify-center w-full lg:block">
@@ -82,29 +92,64 @@ export default function Carousel() {
 
       {/* Text Content */}
       <div className="absolute top-1/2 right-4 lg:right-20 -translate-y-1/2 z-20 text-right text-white w-full px-4 lg:w-auto lg:max-w-2xl font-fredoka pointer-events-none">
-        <div className="pointer-events-auto">
-          <h2 className="text-2xl md:text-5xl lg:text-[4rem] font-light leading-tight opacity-90 wrap-break-word mt-25 md:mt-40">
-            {currentData.title}
-          </h2>
-          <h3 className="text-3xl md:text-6xl lg:text-[5rem] font-medium leading-none mb-2 md:mb-6 italic wrap-break-word">
-            {currentData.subtitle}
-          </h3>
-          <p className="text-white text-xs md:text-lg leading-relaxed mb-4 md:mb-10 ml-auto max-w-[200px] md:max-w-sm">
-            {currentData.description}
-          </p>
-
-          <div className="flex justify-end">
-            <SocialMedia />
-          </div>
-        </div>
-        <div className="flex justify-end mt-6 md:mt-12 mb-4 md:mb-8 pointer-events-auto">
-          <Link
-            href={(currentData as CarouselSlide).href || "/"}
-            className="bg-[#F37199] text-white px-6 py-1.5 md:px-8 md:py-2 rounded-md shadow-md hover:bg-[#d65d83] transition-colors font-medium text-sm md:text-lg"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            className="pointer-events-auto"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.5 }}
           >
-            Explore
-          </Link>
-        </div>
+            <motion.h2
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="text-2xl md:text-5xl lg:text-[4rem] font-light leading-tight opacity-90 wrap-break-word mt-25 md:mt-40"
+            >
+              {currentData.title}
+            </motion.h2>
+            <motion.h3
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-3xl md:text-6xl lg:text-[5rem] font-medium leading-none mb-2 md:mb-6 italic wrap-break-word"
+            >
+              {currentData.subtitle}
+            </motion.h3>
+            <motion.p
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-white text-xs md:text-lg leading-relaxed mb-4 md:mb-10 ml-auto max-w-50 md:max-w-sm"
+            >
+              {currentData.description}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex justify-end"
+            >
+              <SocialMedia />
+            </motion.div>
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex justify-end mt-6 md:mt-12 mb-4 md:mb-8"
+            >
+              <Link
+                href={(currentData as CarouselSlide).href || "/"}
+                className="bg-[#F37199] text-white px-6 py-1.5 md:px-8 md:py-2 rounded-md shadow-md hover:bg-[#d65d83] transition-colors font-medium text-sm md:text-lg"
+              >
+                Explore
+              </Link>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Slide Indicators */}
