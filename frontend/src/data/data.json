@@ -69,6 +69,24 @@
     { "id": 3, "name": "Makeup" },
     { "id": 4, "name": "Fragrance" }
   ],
+  "offers": [
+    { "id": 1, "categoryId": 1, "image": "/images/carousel/slide1.jpg", "price": 3000, "originalPrice": 6000, "endTime": "1d 6h 43m", "bgColor": "#ffe3eb" },
+    { "id": 2, "categoryId": 2, "image": "/images/carousel/slide2.jpg", "price": 4500, "originalPrice": 7000, "endTime": "1d 5h 20m", "bgColor": "#cbf0dd" },
+    { "id": 3, "categoryId": 3, "image": "/images/carousel/slide3.jpg", "price": 2500, "originalPrice": 4000, "endTime": "1d 2h 10m", "bgColor": "#fceceb" },
+    { "id": 4, "categoryId": 4, "image": "/images/carousel/slide4.jpg", "price": 1500, "originalPrice": 3000, "endTime": "12h 43m", "bgColor": "#fdf0e6" },
+    { "id": 5, "categoryId": 1, "image": "/images/carousel/slide5.jpg", "price": 3200, "originalPrice": 6500, "endTime": "1d 6h 43m", "bgColor": "#ffe3eb" },
+    { "id": 6, "categoryId": 2, "image": "/images/carousel/slide6.jpg", "price": 5000, "originalPrice": 8000, "endTime": "2d 4h 00m", "bgColor": "#cbf0dd" },
+    { "id": 7, "categoryId": 3, "image": "/images/carousel/slide1.jpg", "price": 3000, "originalPrice": 6000, "endTime": "1d 6h 43m", "bgColor": "#fceceb" },
+    { "id": 8, "categoryId": 4, "image": "/images/carousel/slide2.jpg", "price": 4500, "originalPrice": 7000, "endTime": "1d 5h 20m", "bgColor": "#fdf0e6" },
+    { "id": 9, "categoryId": 1, "image": "/images/carousel/slide3.jpg", "price": 2500, "originalPrice": 4000, "endTime": "1d 2h 10m", "bgColor": "#ffe3eb" },
+    { "id": 10, "categoryId": 2, "image": "/images/carousel/slide4.jpg", "price": 1500, "originalPrice": 3000, "endTime": "12h 43m", "bgColor": "#cbf0dd" },
+    { "id": 11, "categoryId": 3, "image": "/images/carousel/slide5.jpg", "price": 3200, "originalPrice": 6500, "endTime": "1d 6h 43m", "bgColor": "#fceceb" },
+    { "id": 12, "categoryId": 4, "image": "/images/carousel/slide6.jpg", "price": 5000, "originalPrice": 8000, "endTime": "2d 4h 00m", "bgColor": "#fdf0e6" },
+    { "id": 13, "categoryId": 1, "image": "/images/carousel/slide1.jpg", "price": 3000, "originalPrice": 6000, "endTime": "1d 6h 43m", "bgColor": "#ffe3eb" },
+    { "id": 14, "categoryId": 2, "image": "/images/carousel/slide2.jpg", "price": 4500, "originalPrice": 7000, "endTime": "1d 5h 20m", "bgColor": "#cbf0dd" },
+    { "id": 15, "categoryId": 3, "image": "/images/carousel/slide3.jpg", "price": 2500, "originalPrice": 4000, "endTime": "1d 2h 10m", "bgColor": "#fceceb" },
+    { "id": 16, "categoryId": 4, "image": "/images/carousel/slide4.jpg", "price": 1500, "originalPrice": 3000, "endTime": "12h 43m", "bgColor": "#fdf0e6" }
+  ],
   "footer": {
     "socialLinks": [
       { "name": "Facebook", "icon": "facebook", "href": "#" },

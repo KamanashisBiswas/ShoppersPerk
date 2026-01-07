@@ -33,7 +33,7 @@ export default function CategoryTabs({
         <button
           key={category.id}
           onClick={() => handleCategoryClick(category.id)}
-          className={`px-2 md:px-5 py-2 lg:px-8 lg:py-3 rounded-full text-sm lg:text-lg font-medium transition-all duration-300 font-fredoka whitespace-nowrap shrink-0 ${
+          className={`px-2 md:px-5 py-2 lg:px-8 lg:py-3 rounded-full text-sm lg:text-lg font-medium transition-all cursor-pointer duration-300 font-fredoka whitespace-nowrap shrink-0 ${
             activeCategory === category.id
               ? "bg-[#f8b4d9] text-[#a91d5b] shadow-md"
               : "bg-transparent text-gray-600 hover:bg-pink-100"

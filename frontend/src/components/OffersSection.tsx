@@ -4,12 +4,21 @@ import SectionTitle from "./SectionTitle";
 import CategoryTabs from "./CategoryTabs";
 import offersData from "@/data/data.json";
 import { motion } from "framer-motion";
+import OfferCard from "./OfferCard";
+import { useState } from "react";
 
 export default function OffersSection() {
+  const [selectedCategory, setSelectedCategory] = useState(
+    offersData.offerCategories[0]?.id || 1
+  );
+
   const handleCategoryChange = (categoryId: number) => {
-    console.log("Selected category:", categoryId);
-    // Handle category change logic here
+    setSelectedCategory(categoryId);
   };
+
+  const filteredOffers = offersData.offers
+    .filter((offer) => offer.categoryId === selectedCategory)
+    .slice(0, 4);
 
   return (
     <section className="w-full py-16 px-4 bg-linear-to-b from-white to-pink-50">
@@ -42,6 +51,21 @@ export default function OffersSection() {
             onCategoryChange={handleCategoryChange}
           />
         </motion.div>
+
+        {/* Offers Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-12 px-2 md:px-0">
+          {filteredOffers.map((offer) => (
+            <OfferCard
+              key={offer.id}
+              id={offer.id}
+              image={offer.image}
+              price={offer.price}
+              originalPrice={offer.originalPrice}
+              endTime={offer.endTime}
+              bgColor={offer.bgColor}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

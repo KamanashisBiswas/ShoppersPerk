@@ -1,5 +1,4 @@
 import MarqueeHeader from "@/components/MarqueeHeader";
-import Navbar from "@/components/Navbar";
 import Carousel from "@/components/Carousel";
 import OffersSection from "@/components/OffersSection";
 import Footer from "@/components/Footer";
