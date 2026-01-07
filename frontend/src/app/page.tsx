@@ -1,6 +1,7 @@
 import MarqueeHeader from "@/components/MarqueeHeader";
 import Carousel from "@/components/Carousel";
 import OffersSection from "@/components/OffersSection";
+import BeautyBuzzSection from "@/components/BeautyBuzzSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         </div>
       </div>
       <OffersSection />
+      <BeautyBuzzSection />
       <Footer />
     </div>
   );

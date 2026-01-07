@@ -21,7 +21,7 @@ export default function OffersSection() {
     .slice(0, 4);
 
   return (
-    <section className="w-full py-16 px-4 bg-linear-to-b from-white to-pink-50">
+    <section className="w-full py-16 px-4 bg-[#FFEDFA]">
       <div className="container mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 20 }}

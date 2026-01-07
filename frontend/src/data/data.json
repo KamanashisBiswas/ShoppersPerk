@@ -87,6 +87,49 @@
     { "id": 15, "categoryId": 3, "image": "/images/carousel/slide3.jpg", "price": 2500, "originalPrice": 4000, "endTime": "1d 2h 10m", "bgColor": "#fceceb" },
     { "id": 16, "categoryId": 4, "image": "/images/carousel/slide4.jpg", "price": 1500, "originalPrice": 3000, "endTime": "12h 43m", "bgColor": "#fdf0e6" }
   ],
+  "beautyBuzz": {
+    "title": "Believe the beauty buzz",
+    "heroImage": "/images/buzz/image1.jpg",
+    "heroBadge": "Best Sells",
+    "products": [
+      {
+        "id": 101,
+        "name": "Skin Care For Women",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "rating": 5,
+        "image": "/images/products/product1.jpg"
+      },
+      {
+        "id": 102,
+        "name": "Skin Care For Women",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "rating": 5,
+        "image": "/images/products/product1.jpg"
+      },
+      {
+        "id": 103,
+        "name": "Skin Care For Women",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "rating": 5,
+        "image": "/images/products/product1.jpg"
+      },
+      {
+        "id": 104,
+        "name": "Skin Care For Women",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "rating": 5,
+        "image": "/images/products/product1.jpg"
+      }
+    ]
+  },
   "footer": {
     "socialLinks": [
       { "name": "Facebook", "icon": "facebook", "href": "#" },
