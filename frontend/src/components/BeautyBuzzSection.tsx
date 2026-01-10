@@ -25,7 +25,7 @@ export default function BeautyBuzzSection() {
             transition={{ duration: 0.8 }}
             className="w-full lg:w-[50%] flex justify-center lg:justify-end relative"
           >
-            <div className="relative w-full max-w-162.5 aspect-square">
+            <div className="relative w-full max-w-162.5 aspect-[4/5]">
               {/* Custom Sparkles */}
               <motion.div
                 animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
