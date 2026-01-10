@@ -130,6 +130,31 @@
       }
     ]
   },
+  "craftYourLook": {
+    "title": "Craft you look",
+    "items": [
+      {
+        "id": 1,
+        "image": "/images/craft/craft1.jpg",
+        "label": "Face"
+      },
+      {
+        "id": 2,
+         "image": "/images/craft/craft2.jpg",
+        "label": "Skin"
+      },
+      {
+        "id": 3,
+        "image": "/images/craft/craft3.jpg",
+        "label": "Hair"
+      },
+      {
+        "id": 4,
+         "image": "/images/craft/craft4.jpg",
+        "label": "Perfume"
+      }
+    ]
+  },
   "footer": {
     "socialLinks": [
       { "name": "Facebook", "icon": "facebook", "href": "#" },
