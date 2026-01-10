@@ -36,7 +36,7 @@ export default function Navbar({ onMenuToggle }: NavbarProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden lg:block bg-white/80 backdrop-blur-md rounded-full mx-auto max-w-fit px-10 py-3 shadow-sm border border-pink-100 font-fredoka">
+      <nav className="hidden lg:block top-4 z-50 bg-gray-100/60 rounded-full mx-auto max-w-fit px-10 py-3 shadow-sm font-fredoka">
         <ul className="flex items-center justify-center gap-6 flex-wrap">
           {navData.navItems.map((item) => (
             <li key={item.id}>

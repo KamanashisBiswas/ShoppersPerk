@@ -10,7 +10,7 @@ export default function CraftYourLookSection() {
 
   return (
     <>
-      <section className="w-full py-16 px-4">
+      <section className="w-full py-16 px-4 bg-[#FFEDFA]">
         <div className="container mx-auto">
           <SectionTitle title={craftYourLook.title} className="mb-12" />
 
@@ -25,7 +25,7 @@ export default function CraftYourLookSection() {
                 className="inline-block w-full"
               >
                 {/* look-card-wrapper class added here for hover scope */}
-                <div className="look-card-wrapper bg-linear-to-b from-[#F7A8C4] to-[#E53888] p-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="look-card-wrapper bg-linear-to-b from-[#F7A8C4] to-[#E53888] p-2 md:p-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="look-card-inner aspect-square w-full">
                     <Image
                       src={item.image}

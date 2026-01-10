@@ -11,7 +11,7 @@ export default function Footer() {
   const { footer, siteLogo } = footerData;
 
   return (
-    <footer className="bg-pink-50/50 pt-16 pb-8 font-fredoka">
+    <footer className="bg-[#FFEDFA] pt-16 pb-8 font-fredoka">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Top Section */}
         <motion.div
@@ -174,10 +174,13 @@ export default function Footer() {
             </div>
           ))}
         </motion.div>
+        <hr />
 
         {/* Copyright */}
         <div className="border-t border-pink-100 pt-8 text-center">
-          <p className="text-[#a91d5b]/70 text-sm">{footer.copyright}</p>
+          <p className="text-[#a91d5b]/70 text-sm">
+            &copy; {new Date().getFullYear()} | {footer.copyright}
+          </p>
         </div>
       </div>
     </footer>
