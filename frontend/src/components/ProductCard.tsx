@@ -29,7 +29,7 @@ export default function BuzzProductCard({
   return (
     <div className="flex flex-col items-center group">
       {/* Image Container */}
-      <div className="relative bg-white w-45 h-52.5 mb-4 p-4 shadow-sm">
+      <div className="relative bg-white w-45 h-52.5 mb-4 p-4 shadow-sm overflow-hidden">
         {/* Discount Badge */}
         <div className="absolute top-2 right-2 bg-[#FFDAE7] text-black px-1.5 py-0.5 text-[10px] font-light z-10">
           {discount}
@@ -44,13 +44,13 @@ export default function BuzzProductCard({
         </button>
 
         {/* Image */}
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full transition-transform duration-300 hover:scale-110">
           <Image src={image} alt={name} fill className="object-contain" />
         </div>
       </div>
 
       {/* Content */}
-      <h3 className="text-[#EC7FA9] font-medium text-sm md:text-base text-center mb-1">
+      <h3 className="text-[#EC7FA9] font-medium text-sm md:text-base text-center mb-1 transition-transform duration-300 hover:scale-110 cursor-pointer">
         {name}
       </h3>
       <p className="text-[#AC1754] text-xs font-medium mb-2">{variant}</p>

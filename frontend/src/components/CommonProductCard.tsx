@@ -29,7 +29,7 @@ export default function ExclusiveProductCard({
   return (
     <div className="flex flex-col items-center group">
       {/* Image Container - Bigger */}
-      <div className="relative bg-white w-full h-64 md:h-72 mb-5 p-5 shadow-md">
+      <div className="relative bg-white w-full h-64 md:h-72 mb-5 p-5 shadow-md overflow-hidden">
         {/* Discount Badge */}
         <div className="absolute top-3 right-3 bg-[#FFDAE7] text-black px-2 py-1 text-xs font-light z-10">
           {discount}
@@ -44,13 +44,13 @@ export default function ExclusiveProductCard({
         </button>
 
         {/* Image */}
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full transition-transform duration-300 hover:scale-110">
           <Image src={image} alt={name} fill className="object-contain" />
         </div>
       </div>
 
       {/* Content */}
-      <h3 className="text-[#EC7FA9] font-medium text-base md:text-lg text-center mb-1.5">
+      <h3 className="text-[#EC7FA9] font-medium text-base md:text-lg text-center mb-1.5 transition-transform duration-300 hover:scale-110 cursor-pointer">
         {name}
       </h3>
       <p className="text-[#AC1754] text-sm font-medium mb-2.5">{variant}</p>

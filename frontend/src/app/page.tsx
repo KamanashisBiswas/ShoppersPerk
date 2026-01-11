@@ -4,6 +4,7 @@ import OffersSection from "@/components/OffersSection";
 import BeautyBuzzSection from "@/components/BeautyBuzzSection";
 import CraftYourLookSection from "@/components/CraftYourLookSection";
 import ExclusiveOffersSection from "@/components/ExclusiveOffersSection";
+import GlowWithNewBeautySection from "@/components/GlowWithNewBeautySection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <BeautyBuzzSection />
       <CraftYourLookSection />
       <ExclusiveOffersSection />
+      <GlowWithNewBeautySection />
       <Footer />
     </div>
   );

@@ -158,6 +158,8 @@
   "exclusiveOffers": {
     "subtitle": "Exclusive Product",
     "title": "Don't Miss Out Exclusive",
+    "heroImage": "/images/buzz/image1.jpg",
+    "heroBadge": "Best Sells",
     "products": [
       {
         "id": 201,
@@ -224,6 +226,49 @@
       },
       {
         "id": 208,
+        "name": "Skin Care For Women",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "rating": 5,
+        "image": "/images/products/product1.jpg"
+      }
+    ]
+  },
+  "glowWithNewBeauty": {
+    
+    "heroImage": "/images/beauty/image1.jpg",
+    "heroBadge": "Best Sells",
+    "products": [
+      {
+        "id": 301,
+        "name": "Skin Care For Women",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "rating": 5,
+        "image": "/images/products/product1.jpg"
+      },
+      {
+        "id": 302,
+        "name": "Skin Care For Women",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "rating": 5,
+        "image": "/images/products/product1.jpg"
+      },
+      {
+        "id": 303,
+        "name": "Skin Care For Women",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "rating": 5,
+        "image": "/images/products/product1.jpg"
+      },
+      {
+        "id": 304,
         "name": "Skin Care For Women",
         "variant": "Silver",
         "price": 3000,

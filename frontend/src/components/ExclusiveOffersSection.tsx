@@ -9,7 +9,7 @@ export default function ExclusiveOffersSection() {
   const { exclusiveOffers } = offersData;
 
   return (
-    <section className="w-full py-16 px-4 bg-[#FFFBFC] relative overflow-hidden">
+    <section className="w-full py-16 px-4 bg-[#FFEDFA] relative overflow-hidden">
       <div className="container mx-auto">
         {/* Section Header */}
         <motion.p

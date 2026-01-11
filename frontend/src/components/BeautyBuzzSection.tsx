@@ -89,11 +89,17 @@ export default function BeautyBuzzSection() {
               ))}
             </div>
 
-            <div className="flex justify-center mt-8">
-              <button className="bg-[#ffeaf5] cursor-pointer hover:bg-[#ffcce6] text-[#c61a6b] font-medium py-2 px-8 rounded-lg shadow-sm hover:shadow-md transition-all">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex justify-center"
+            >
+              <button className="bg-[#ffeaf5] cursor-pointer hover:bg-[#ffcce6] text-[#c61a6b] font-medium py-3 px-12 rounded-lg shadow-sm hover:shadow-md transition-all">
                 More
               </button>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
