@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import WeddingProductCard from "./WeddingProductCard";
+import SectionTitle from "./SectionTitle";
 import offersData from "@/data/data.json";
 import { motion } from "framer-motion";
 
@@ -9,45 +10,65 @@ export default function WeddingWhispersSection() {
   const { weddingWhispers } = offersData;
 
   return (
-    <section className="w-full py-20 px-4 bg-[#fff9fb] relative overflow-hidden">
-      <div className="container mx-auto max-w-7xl">
+    <section className="w-full py-12 md:py-20 px-4 bg-[#FFEDFA] relative overflow-hidden">
+      <div className="container mx-auto">
         {/* --- Header Section --- */}
-        <div className="flex flex-row items-end gap-6 mb-14 pl-2">
-          {/* Logo */}
-          <div className="w-16 md:w-24 flex-shrink-0">
+        <div className="flex flex-row items-end gap-2 md:gap-4 pl-0 md:pl-2">
+          {/* Logo - Increased Size */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="w-20 h-28 md:w-32 md:h-36 relative shrink-0"
+          >
             <Image
               src="/images/elegant/logo.png"
               alt="Wedding Icon"
-              width={100}
-              height={100}
+              fill
               className="object-contain"
             />
-          </div>
+          </motion.div>
 
-          {/* Title */}
-          <div className="flex flex-col items-start gap-3 pb-2">
-            <span className=" text-[#be185d]rounded-full text-sm font-bold tracking-wide">
-              {weddingWhispers.subtitle}
-            </span>
-            <h2 className="text-[#be185d] text-3xl md:text-5xl lg:text-5xl font-bold leading-tight">
-              {weddingWhispers.title}
-            </h2>
+          {/* Title & Subtitle Container */}
+          <div className="flex flex-col justify-end pb-1 w-full">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-sm md:text-[18px] font-normal mb-2 md:mb-5"
+            >
+              Wedding Whispers
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <SectionTitle
+                title="Celebrate Love In Elegant Style"
+                className="text-left mb-4 md:mb-12 [&>h2]:text-2xl [&>h2]:md:text-4xl [&>h2]:leading-tight"
+              />
+            </motion.div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
           {/* Left Column - Hero Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-5 relative mt-8 lg:mt-24"
+            className="lg:col-span-5 relative mt-4 md:mt-8 lg:mt-24 px-4 md:px-0"
           >
-            <div className="relative w-full aspect-[3.2/4] rounded-[30px] p-2">
+            <div className="relative w-full aspect-[3.2/4] rounded-[20px] md:rounded-[30px] p-2">
               {/* Double Border Frame */}
               <div
-                className="absolute inset-0 border-[3px] border-white z-20 rounded-[30px]"
+                className="absolute inset-0 border-[2px] md:border-[3px] border-white z-20 rounded-[20px] md:rounded-[30px]"
                 style={{
                   boxShadow:
                     "inset 0 0 0 2px #f472b6, 0 10px 40px rgba(244, 114, 182, 0.25)",
@@ -55,7 +76,7 @@ export default function WeddingWhispersSection() {
               />
 
               {/* --- Ring Decoration: Top Right (Pair) --- */}
-              <div className="absolute -top-12 -right-10 z-30 w-32 h-32">
+              <div className="absolute -top-6 -right-5 md:-top-12 md:-right-10 z-30 w-20 h-20 md:w-32 md:h-32">
                 <Image
                   src="/images/elegant/ringright.png"
                   alt="Wedding Rings"
@@ -66,7 +87,7 @@ export default function WeddingWhispersSection() {
               </div>
 
               {/* --- Ring Decoration: Bottom Left (Single) --- */}
-              <div className="absolute -bottom-10 -left-10 z-30 w-32 h-32">
+              <div className="absolute -bottom-5 -left-5 md:-bottom-10 md:-left-10 z-30 w-20 h-20 md:w-32 md:h-32">
                 <Image
                   src="/images/elegant/ringleft.png"
                   alt="Diamond Ring"
@@ -77,7 +98,7 @@ export default function WeddingWhispersSection() {
               </div>
 
               {/* Main Image */}
-              <div className="relative w-full h-full rounded-[25px] overflow-hidden">
+              <div className="relative w-full h-full rounded-[15px] md:rounded-[25px] overflow-hidden">
                 <Image
                   src={weddingWhispers.heroImage}
                   alt="Bridal Beauty"
@@ -87,8 +108,8 @@ export default function WeddingWhispersSection() {
                 />
 
                 {/* 'View yours' Overlay */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] bg-[#881337]/75 backdrop-blur-[2px] py-3 rounded-lg text-center shadow-lg">
-                  <p className="text-white text-lg font-medium tracking-wide">
+                <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 w-[90%] bg-[#881337]/75 backdrop-blur-[2px] py-2 md:py-3 rounded-lg text-center shadow-lg">
+                  <p className="text-white text-sm md:text-lg font-medium tracking-wide">
                     View yours
                   </p>
                 </div>
@@ -132,7 +153,7 @@ export default function WeddingWhispersSection() {
 
             {/* More Button */}
             <div className="mt-12">
-              <button className="bg-[#fce7f3] text-[#be185d] px-14 py-3 rounded-[12px] font-bold text-lg hover:shadow-lg hover:bg-[#fbcfe8] hover:-translate-y-1 transition-all duration-300">
+              <button className="bg-[#ffeaf5] cursor-pointer hover:bg-[#ffcce6] text-[#c61a6b] font-medium py-3 px-12 rounded-lg shadow-sm hover:shadow-md transition-all">
                 More
               </button>
             </div>

@@ -21,8 +21,8 @@ export default function Home() {
       <BeautyBuzzSection />
       <CraftYourLookSection />
       <ExclusiveOffersSection />
-      <WeddingWhispersSection />
       <GlowWithNewBeautySection />
+      <WeddingWhispersSection />
       <Footer />
     </div>
   );
