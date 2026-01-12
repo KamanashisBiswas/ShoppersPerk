@@ -235,6 +235,27 @@
       }
     ]
   },
+  "weddingWhispers": {
+    "subtitle": "Wedding Whispers",
+    "title": "Celebrate Love In Elegant Style",
+    "heroImage": "/images/elegant/image1.jpg",
+    "products": [
+      {
+        "id": 401,
+        "name": "Bridal Makeup Combo Pack",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/elegant/image2.jpg"
+      },
+      {
+        "id": 402,
+        "name": "Bridal Makeup Combo Pack",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/elegant/image3.jpg"
+      }
+    ]
+  },
   "glowWithNewBeauty": {
     
     "heroImage": "/images/beauty/image1.jpg",
