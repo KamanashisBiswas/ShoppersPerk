@@ -66,7 +66,7 @@ export default function WeddingProductCard({
 
           {/* Add to Cart Button - Centered Pill Shape */}
           <div className="mt-auto flex justify-center w-full">
-            <button className="bg-[#FFB8E0] hover:bg-[#fa86ae] text-[#AC1754] hover:text-white text-xs md:text-sm font-medium py-2 px-6 md:py-2.5 md:px-8 rounded-md shadow-sm transition-all duration-300 cursor-pointer mb-1 w-auto">
+            <button className="bg-[#FFB8E0] hover:bg-[#fa86ae] text-[#AC1754] hover:text-white text-[10px] md:text-xs font-medium py-2 px-6 rounded-md shadow-sm transition-all duration-300 cursor-pointer mb-1 w-auto">
               Add to Cart
             </button>
           </div>

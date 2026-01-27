@@ -74,7 +74,7 @@ export default function ExclusiveProductCard({
       {/* Add To Cart Button */}
       <button
         onClick={onAddToCart}
-        className="bg-[#FFB8E0] hover:bg-[#fa86ae] text-[#AC1754] hover:text-white text-xs md:text-sm font-medium py-2.5 px-8 rounded-md shadow-sm transition-all duration-300 cursor-pointer"
+        className="bg-[#FFB8E0] hover:bg-[#fa86ae] text-[#AC1754] hover:text-white text-[10px] md:text-xs font-medium py-2 px-6 rounded-md shadow-sm transition-all duration-300 cursor-pointer"
       >
         Add to Cart
       </button>
