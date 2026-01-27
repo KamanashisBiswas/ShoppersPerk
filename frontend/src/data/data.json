@@ -295,6 +295,20 @@
         "price": 10000,
         "discount": "-50%",
         "image": "/images/birthday/image3.jpg"
+      },
+      {
+        "id": 603,
+        "name": "Birthday Gift Pack",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/craft/craft1.jpg"
+      },
+      {
+        "id": 604,
+        "name": "Birthday Gift Pack",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/craft/craft2.jpg"
       }
     ]
   },
