@@ -277,6 +277,27 @@
       }
     ]
   },
+  "birthdayGlam": {
+    "subtitle": "Birthday Glam",
+    "title": "Born To Shine This Birthday",
+    "heroImage": "/images/birthday/image1.jpg",
+    "products": [
+      {
+        "id": 601,
+        "name": "Birthday Gift Pack",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/birthday/image2.jpg"
+      },
+      {
+        "id": 602,
+        "name": "Birthday Gift Pack",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/birthday/image3.jpg"
+      }
+    ]
+  },
   "glowWithNewBeauty": {
     
     "heroImage": "/images/beauty/image1.jpg",

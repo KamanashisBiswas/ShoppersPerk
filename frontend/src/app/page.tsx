@@ -7,6 +7,7 @@ import ExclusiveOffersSection from "@/components/ExclusiveOffersSection";
 import WeddingWhispersSection from "@/components/WeddingWhispersSection";
 import GlowWithNewBeautySection from "@/components/GlowWithNewBeautySection";
 import VibrantFestivalSection from "@/components/VibrantFestivalSection";
+import BirthdayGlamSection from "@/components/BirthdayGlamSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
       <GlowWithNewBeautySection />
       <WeddingWhispersSection />
       <VibrantFestivalSection />
+      <BirthdayGlamSection />
       <Footer />
     </div>
   );
