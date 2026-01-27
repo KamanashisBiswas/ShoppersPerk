@@ -8,7 +8,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export default function Footer() {
-  const { footer, siteLogo } = footerData;
+  const { footer } = footerData;
 
   return (
     <footer className="bg-[#FFEDFA] pt-16 pb-8 font-fredoka">

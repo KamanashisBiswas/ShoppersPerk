@@ -25,7 +25,7 @@ export default function BeautyBuzzSection() {
             transition={{ duration: 0.8 }}
             className="w-full lg:w-[50%] flex justify-center lg:justify-end relative"
           >
-            <div className="relative w-full max-w-162.5 aspect-[4/5]">
+            <div className="relative w-full max-w-162.5 aspect-4/5">
               {/* Custom Sparkles */}
               <motion.div
                 animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
@@ -50,13 +50,14 @@ export default function BeautyBuzzSection() {
               </motion.div>
 
               {/* The main shape wrapper */}
-              <div className="relative w-full h-full rounded-[45%] overflow-hidden border-8px border-white shadow-[0_0_0_1px_rgba(234,246,250,1),0_0_0_8px_rgba(234,246,250,0.5)]">
+              <div className="relative w-full h-full rounded-[45%] overflow-hidden border-2 border-white shadow-[0_0_0_1px_rgba(234,246,250,1),0_0_0_8px_rgba(234,246,250,0.5)]">
                 <Image
                   src={beautyBuzz.heroImage}
                   alt="Beauty Buzz Hero"
                   fill
                   className="object-cover"
                 />
+                <div className="absolute inset-1 rounded-[45%] border-2 border-[#FFFFFF] pointer-events-none" />
               </div>
 
               {/* Best Sells Badge */}

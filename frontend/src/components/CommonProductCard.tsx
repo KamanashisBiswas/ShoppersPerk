@@ -16,7 +16,7 @@ interface ExclusiveProductCardProps {
 }
 
 export default function ExclusiveProductCard({
-  id,
+  
   image,
   name,
   variant,

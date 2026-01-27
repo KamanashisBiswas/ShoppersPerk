@@ -40,7 +40,7 @@ export default function WeddingProductCard({
         </div>
 
         {/* Product Image */}
-        <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-3">
+        <div className="relative w-full aspect-4/5 rounded-xl overflow-hidden mb-3">
           <Image
             src={product.image}
             alt={product.name}
@@ -50,7 +50,7 @@ export default function WeddingProductCard({
         </div>
 
         {/* Product Info */}
-        <div className="flex flex-col flex-grow px-0.5">
+        <div className="flex flex-col grow px-0.5">
           <h3 className="text-[#EC7FA9] font-medium text-base md:text-lg mb-1 line-clamp-2">
             {product.name}
           </h3>

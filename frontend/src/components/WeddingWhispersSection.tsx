@@ -68,7 +68,7 @@ export default function WeddingWhispersSection() {
             <div className="relative w-full aspect-[3.2/4] rounded-[20px] md:rounded-[30px] p-2">
               {/* Double Border Frame */}
               <div
-                className="absolute inset-0 border-[2px] md:border-[3px] border-white z-20 rounded-[20px] md:rounded-[30px]"
+                className="absolute inset-0 border-2 md:border-[3px] border-white z-20 rounded-[20px] md:rounded-[30px]"
                 style={{
                   boxShadow:
                     "inset 0 0 0 2px #f472b6, 0 10px 40px rgba(244, 114, 182, 0.25)",
@@ -124,7 +124,7 @@ export default function WeddingWhispersSection() {
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-8 w-full flex justify-center h-[60px]"
+              className="mb-8 w-full flex justify-center h-15"
             >
               <Image
                 src="/images/elegant/logo2.png"

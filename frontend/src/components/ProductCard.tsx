@@ -16,7 +16,7 @@ interface BuzzProductCardProps {
 }
 
 export default function BuzzProductCard({
-  id,
+
   image,
   name,
   variant,

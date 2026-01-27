@@ -78,7 +78,7 @@ export default function GlowWithNewBeautySection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full lg:w-[50%] flex justify-center lg:justify-start relative order-1 lg:order-2"
           >
-            <div className="relative w-full max-w-162.5 aspect-[4/5]">
+            <div className="relative w-full max-w-162.5 aspect-4/5">
               {/* Custom Sparkles */}
               <motion.div
                 animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
@@ -103,13 +103,14 @@ export default function GlowWithNewBeautySection() {
               </motion.div>
 
               {/* The main shape wrapper */}
-              <div className="relative w-full h-full rounded-[45%] overflow-hidden border-8px border-white shadow-[0_0_0_1px_rgba(234,246,250,1),0_0_0_8px_rgba(234,246,250,0.5)]">
+              <div className="relative w-full h-full rounded-[45%] overflow-hidden border-2 border-white shadow-[0_0_0_1px_rgba(234,246,250,1),0_0_0_8px_rgba(234,246,250,0.5)]">
                 <Image
                   src={glowWithNewBeauty.heroImage}
                   alt="Glow with New Beauty"
                   fill
                   className="object-cover"
                 />
+                <div className="absolute inset-1 rounded-[45%] border-2 border-[#FFFFFF] pointer-events-none" />
               </div>
 
               {/* Best Sells Badge */}

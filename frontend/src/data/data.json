@@ -256,6 +256,27 @@
       }
     ]
   },
+  "vibrantLooks": {
+    "subtitle": "Festive Session",
+    "title": "Vibrant Looks for Festival Vibes",
+    "heroImage": "/images/Vibrant/image1.jpg",
+    "products": [
+      {
+        "id": 501,
+        "name": "Festival Gift Pack",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/Vibrant/image2.jpg"
+      },
+      {
+        "id": 502,
+        "name": "Festival Gift Pack",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/Vibrant/image3.jpg"
+      }
+    ]
+  },
   "glowWithNewBeauty": {
     
     "heroImage": "/images/beauty/image1.jpg",

@@ -15,7 +15,7 @@ interface OfferCardProps {
 }
 
 export default function OfferCard({
-  id,
+  
   image,
   price,
   originalPrice,
