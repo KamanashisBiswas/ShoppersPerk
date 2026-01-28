@@ -41,7 +41,7 @@ export default function SoftCareSection() {
 
         <div className="flex flex-col gap-6 md:gap-8">
           {/* Top Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-6 md:gap-8">
             {/* Left Column - Hero Image */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -130,7 +130,7 @@ export default function SoftCareSection() {
           </div>
 
           {/* Bottom Row - 2 Columns (Aligned with Top) + Absolute Button between them */}
-          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          <div className="relative grid grid-cols-1 lg:grid-cols-[40%_60%] gap-6 md:gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -195,14 +195,14 @@ export default function SoftCareSection() {
             </motion.div>
 
             {/* Centered Absolute Button */}
-            <div className="absolute top-1/2 left-[57%] -translate-x-1/2 -translate-y-1/2 z-30">
-              <div className="flex items-center justify-center w-32 h-32 md:w-44 md:h-44 transition-transform hover:scale-105">
+            <div className="absolute top-1/2 left-[49%] -translate-x-1/2 -translate-y-1/2 z-30">
+              <div className="flex items-center justify-center w-40 h-40 md:w-64 md:h-64 transition-transform hover:scale-105">
                 <Image
                   src="/images/softCare/logo.png"
                   alt="Logo"
-                  width={140}
-                  height={140}
-                  className="object-contain w-28 h-28 md:w-40 md:h-40"
+                  width={250}
+                  height={250}
+                  className="object-contain w-36 h-36 md:w-60 md:h-60"
                 />
               </div>
             </div>
