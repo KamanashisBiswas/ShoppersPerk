@@ -88,17 +88,19 @@ export default function SoftCareSection() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="soft-care-card h-full"
                 >
-                  <div className="relative bg-white rounded-[18px] border border-[#FCE4EC] shadow-[0_8px_20px_rgba(233,30,99,0.08)] overflow-hidden h-full flex flex-col">
+                  <div className="relative bg-white p-2 rounded-[18px] border border-[#FCE4EC] shadow-[0_8px_20px_rgba(233,30,99,0.08)] overflow-hidden h-full flex flex-col">
                     <span className="absolute top-3 left-3 bg-[#FCE4EC] text-[#C2185B] text-[10px] font-semibold px-2 py-0.5 rounded z-10">
                       {product.discount}
                     </span>
 
-                    <div className="relative w-full aspect-4/3 overflow-hidden">
+                    <div
+                      className={`relative w-full overflow-hidden ${product.showAddToCart ? "flex-1" : "aspect-4/3"}`}
+                    >
                       <Image
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-cover"
+                        className="object-cover rounded-md"
                       />
                       {product.showAddToCart ? (
                         <div className="absolute inset-x-0 bottom-0 top-0 bg-linear-to-t from-[#F06292]/60 via-transparent to-transparent" />
@@ -107,7 +109,7 @@ export default function SoftCareSection() {
 
                     {product.showAddToCart ? (
                       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-full px-4 flex justify-center">
-                        <button className="bg-[#F8BBD0] text-[#880E4F] text-xs md:text-sm font-bold py-2.5 px-8 rounded-xl shadow-lg hover:bg-[#F48FB1] hover:text-white transition-all w-fit whitespace-nowrap">
+                        <button className="bg-[#ffeaf5] cursor-pointer hover:bg-[#ffcce6] text-[#c61a6b] font-medium py-3 px-12 rounded-lg shadow-sm hover:shadow-md transition-all">
                           Add to Cart
                         </button>
                       </div>
@@ -137,7 +139,7 @@ export default function SoftCareSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="relative bg-white rounded-[18px] border border-[#FCE4EC] shadow-[0_8px_20px_rgba(233,30,99,0.08)] overflow-hidden">
+              <div className="relative bg-white rounded-[18px] border border-[#FCE4EC] shadow-[0_8px_20px_rgba(233,30,99,0.08)] overflow-hidden p-2">
                 <span className="absolute top-2 left-2 bg-[#FCE4EC] text-[#C2185B] text-[10px] font-semibold px-2 py-0.5 rounded z-10">
                   {bottomProducts[0].discount}
                 </span>
@@ -147,7 +149,7 @@ export default function SoftCareSection() {
                     src={bottomProducts[0].image}
                     alt={bottomProducts[0].name}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-md"
                   />
                 </div>
 
@@ -169,7 +171,7 @@ export default function SoftCareSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="lg:h-full"
             >
-              <div className="relative bg-white rounded-[18px] border border-[#FCE4EC] shadow-[0_8px_20px_rgba(233,30,99,0.08)] overflow-hidden w-full lg:w-[70%] lg:ml-auto lg:h-full flex flex-col">
+              <div className="relative bg-white rounded-[18px] border border-[#FCE4EC] shadow-[0_8px_20px_rgba(233,30,99,0.08)] overflow-hidden w-full lg:w-[70%] lg:ml-auto lg:h-full flex flex-col p-2">
                 <span className="absolute top-2 left-2 bg-[#FCE4EC] text-[#C2185B] text-[10px] font-semibold px-2 py-0.5 rounded z-10">
                   {bottomProducts[1].discount}
                 </span>
@@ -179,7 +181,7 @@ export default function SoftCareSection() {
                     src={bottomProducts[1].image}
                     alt={bottomProducts[1].name}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-md"
                   />
                 </div>
 
