@@ -167,14 +167,14 @@ export default function SoftCareSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="h-full"
+              className="lg:h-full"
             >
-              <div className="relative bg-white rounded-[18px] border border-[#FCE4EC] shadow-[0_8px_20px_rgba(233,30,99,0.08)] overflow-hidden w-[70%] ml-auto h-full flex flex-col">
+              <div className="relative bg-white rounded-[18px] border border-[#FCE4EC] shadow-[0_8px_20px_rgba(233,30,99,0.08)] overflow-hidden w-full lg:w-[70%] lg:ml-auto lg:h-full flex flex-col">
                 <span className="absolute top-2 left-2 bg-[#FCE4EC] text-[#C2185B] text-[10px] font-semibold px-2 py-0.5 rounded z-10">
                   {bottomProducts[1].discount}
                 </span>
 
-                <div className="relative w-full flex-1 overflow-hidden">
+                <div className="relative w-full aspect-5/2 overflow-hidden lg:flex-1 lg:aspect-auto">
                   <Image
                     src={bottomProducts[1].image}
                     alt={bottomProducts[1].name}
@@ -195,17 +195,24 @@ export default function SoftCareSection() {
             </motion.div>
 
             {/* Centered Absolute Button */}
-            <div className="absolute top-1/2 left-[49%] -translate-x-1/2 -translate-y-1/2 z-30">
-              <div className="flex items-center justify-center w-40 h-40 md:w-64 md:h-64 transition-transform hover:scale-105">
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="absolute top-1/2 left-[50%] hidden md:block -translate-x-1/2 -translate-y-1/2 z-30"
+            >
+              <div className="flex items-center justify-center w-24 h-24 md:w-32 md:h-32 lg:w-64 lg:h-64 transition-transform hover:scale-105">
                 <Image
                   src="/images/softCare/logo.png"
                   alt="Logo"
                   width={250}
                   height={250}
-                  className="object-contain w-36 h-36 md:w-60 md:h-60"
+                  className="object-contain w-20 h-20 md:w-28 md:h-28 lg:w-60 lg:h-60"
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
