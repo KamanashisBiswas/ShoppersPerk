@@ -312,6 +312,56 @@
       }
     ]
   },
+  "softCare": {
+    "subtitle": "Sweet Skin",
+    "title": "Soft Care For Little Ones",
+    "heroImage": "/images/softCare/image1.jpg",
+    "products": [
+      {
+        "id": 701,
+        "name": "Baby care combo",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/softCare/image2.jpg"
+      },
+      {
+        "id": 702,
+        "name": "Baby care combo",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/softCare/image3.jpg"
+      },
+      {
+        "id": 703,
+        "name": "Baby care combo",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/softCare/image4.jpg"
+      },
+      {
+        "id": 704,
+        "name": "Baby care combo",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/softCare/image5.jpg",
+        "showAddToCart": true
+      },
+      {
+        "id": 705,
+        "name": "Baby care combo",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/softCare/image6.jpg"
+      },
+      {
+        "id": 706,
+        "name": "Baby care combo",
+        "price": 10000,
+        "discount": "-50%",
+        "image": "/images/softCare/image7.jpg"
+      }
+    ]
+  },
   "glowWithNewBeauty": {
     
     "heroImage": "/images/beauty/image1.jpg",
