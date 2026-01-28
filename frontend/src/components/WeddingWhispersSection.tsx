@@ -1,13 +1,50 @@
 "use client";
 
 import Image from "next/image";
+import { useMemo, useState } from "react";
 import WeddingProductCard from "./WeddingProductCard";
 import SectionTitle from "./SectionTitle";
 import offersData from "@/data/data.json";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function WeddingWhispersSection() {
   const { weddingWhispers } = offersData;
+  const [startIndex, setStartIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const totalProducts = weddingWhispers.products.length;
+  const visibleCount = 2;
+  type Product = (typeof offersData)["weddingWhispers"]["products"][number];
+
+  const getProductAt = (index: number): Product | undefined => {
+    if (totalProducts === 0) return undefined;
+    const normalized =
+      ((index % totalProducts) + totalProducts) % totalProducts;
+    return weddingWhispers.products[normalized];
+  };
+
+  const visibleProducts = useMemo(() => {
+    return Array.from({ length: visibleCount }, (_, i) =>
+      getProductAt(startIndex + i),
+    ).filter((item): item is Product => Boolean(item));
+  }, [startIndex, totalProducts]);
+
+  const handlePrev = () => {
+    if (totalProducts === 0) return;
+    setDirection(-1);
+    setStartIndex((prev) => (prev - 1 + totalProducts) % totalProducts);
+  };
+
+  const handleNext = () => {
+    if (totalProducts === 0) return;
+    setDirection(1);
+    setStartIndex((prev) => (prev + 1) % totalProducts);
+  };
+
+  const cardVariants = {
+    enter: (dir: 1 | -1) => ({ x: dir > 0 ? 50 : -50, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (dir: 1 | -1) => ({ x: dir > 0 ? -50 : 50, opacity: 0 }),
+  };
 
   return (
     <section className="w-full py-12 md:py-20 px-4 bg-[#FFEDFA] relative overflow-hidden">
@@ -135,24 +172,80 @@ export default function WeddingWhispersSection() {
               />
             </motion.div>
 
-            {/* Product Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-              {weddingWhispers.products.map((product, index) => (
-                <motion.div
-                  key={product.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="h-full"
+            {/* Product Area (stacked look) */}
+            <div className="relative w-full product-stack">
+              {/* Back/peek cards */}
+              <div className="peek-card first">
+                <div className="peek-card-inner">
+                  {getProductAt(startIndex - 1) && (
+                    <Image
+                      src={getProductAt(startIndex - 1)!.image}
+                      alt="Wedding Gift Pack Preview"
+                      fill
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="peek-card second">
+                <div className="peek-card-inner">
+                  {getProductAt(startIndex - 2) && (
+                    <Image
+                      src={getProductAt(startIndex - 2)!.image}
+                      alt="Wedding Gift Pack Preview"
+                      fill
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Main Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full relative z-10 overflow-hidden">
+                <AnimatePresence
+                  initial={false}
+                  custom={direction}
+                  mode="popLayout"
                 >
-                  <WeddingProductCard product={product} />
-                </motion.div>
-              ))}
+                  {visibleProducts.map((product) => (
+                    <motion.div
+                      key={product.id}
+                      custom={direction}
+                      variants={cardVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="h-full"
+                      layout
+                    >
+                      <WeddingProductCard product={product} />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </div>
+
+            {/* Slider Buttons */}
+            <div className="mt-10 flex items-center justify-center gap-4">
+              <button
+                aria-label="Previous"
+                onClick={handlePrev}
+                className="h-11 w-11 rounded-full border border-[#f7a1c4] bg-white text-[#c61a6b] shadow-sm hover:shadow-md transition-all"
+              >
+                &#8592;
+              </button>
+              <button
+                aria-label="Next"
+                onClick={handleNext}
+                className="h-11 w-11 rounded-full border border-[#f7a1c4] bg-white text-[#c61a6b] shadow-sm hover:shadow-md transition-all"
+              >
+                &#8594;
+              </button>
             </div>
 
             {/* More Button */}
-            <div className="mt-12">
+            <div className="mt-6">
               <button className="bg-[#ffeaf5] cursor-pointer hover:bg-[#ffcce6] text-[#c61a6b] font-medium py-3 px-12 rounded-lg shadow-sm hover:shadow-md transition-all">
                 More
               </button>
@@ -160,6 +253,62 @@ export default function WeddingWhispersSection() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        .product-stack {
+          padding-left: 24px;
+        }
+        .peek-card {
+          position: absolute;
+          left: -28px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 160px;
+          height: 220px;
+          background: #fff;
+          border-radius: 18px;
+          box-shadow: 0 10px 25px rgba(244, 114, 182, 0.2);
+          border: 1px solid #fce4ec;
+          z-index: 1;
+          overflow: hidden;
+          opacity: 0.6;
+        }
+        .peek-card.second {
+          left: -14px;
+          top: 50%;
+          transform: translateY(calc(-50% + 16px));
+          opacity: 0.45;
+          z-index: 0;
+        }
+        .peek-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border-radius: 18px;
+          overflow: hidden;
+        }
+        @media (min-width: 768px) {
+          .peek-card {
+            left: -36px;
+            width: 190px;
+            height: 250px;
+          }
+          .peek-card.second {
+            left: -20px;
+            transform: translateY(calc(-50% + 20px));
+          }
+        }
+        @media (min-width: 1024px) {
+          .peek-card {
+            left: -48px;
+            width: 210px;
+            height: 280px;
+          }
+          .peek-card.second {
+            left: -28px;
+            transform: translateY(calc(-50% + 24px));
+          }
+        }
+      `}</style>
     </section>
   );
 }
