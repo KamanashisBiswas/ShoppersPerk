@@ -119,7 +119,7 @@ export default function SignatureLookSection() {
               </motion.div>
 
               {/* The main shape wrapper */}
-              <div className="relative w-full h-full rounded-r-[40%] overflow-hidden border-2 border-white shadow-[0_0_0_1px_rgba(255,237,250,1),0_0_0_8px_rgba(255,237,250,0.5)]">
+              <div className="relative w-full h-full rounded-r-[30%] overflow-hidden border-2 border-white shadow-[0_0_0_1px_rgba(255,237,250,1),0_0_0_8px_rgba(255,237,250,0.5)]">
                 <Image
                   src={signatureLook.heroImage}
                   alt="Signature look"
@@ -127,7 +127,7 @@ export default function SignatureLookSection() {
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-1 rounded-r-[40%] border-2 border-[#FFFFFF] pointer-events-none" />
+                <div className="absolute inset-1 rounded-r-[30%] border-2 border-[#FFFFFF] pointer-events-none" />
               </div>
             </div>
           </motion.div>
