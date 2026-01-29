@@ -134,25 +134,27 @@ export default function SignatureLookSection() {
 
           {/* Right - Tiles */}
           <div className="lg:col-span-6">
-            <div className="grid grid-cols-2 gap-4 md:gap-6 signature-tiles">
+            <div className="grid grid-cols-2 gap-4 lg:gap-6">
               {skinTile ? (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
-                  className="signature-tile skin-tile"
                 >
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full aspect-square rounded-tr-[40px] md:rounded-tr-[80px] overflow-hidden border-2 border-white shadow-[0_0_0_1px_rgba(255,237,250,1),0_0_0_6px_rgba(255,237,250,0.5)]">
                     <Image
                       src={skinTile.image}
                       alt={skinTile.label}
                       fill
                       className="object-cover"
                     />
-                    <div className="tile-label">
-                      <span>Skin</span>
+                    <div className="absolute bottom-0 right-0 bg-gradient-to-tl from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-tl-[30px]">
+                      <span className="text-white font-semibold text-xl md:text-2xl tracking-wide">
+                        Skin
+                      </span>
                     </div>
+                    <div className="absolute inset-1 rounded-tr-[35px] md:rounded-tr-[75px] border-2 border-[#FFFFFF]/50 pointer-events-none" />
                   </div>
                 </motion.div>
               ) : null}
@@ -163,18 +165,21 @@ export default function SignatureLookSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.05 }}
-                  className="signature-tile hair-tile"
                 >
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full aspect-square rounded-tl-[40px] md:rounded-tl-[80px] overflow-hidden border-2 border-white shadow-[0_0_0_1px_rgba(255,237,250,1),0_0_0_6px_rgba(255,237,250,0.5)]">
                     <Image
                       src={hairTile.image}
                       alt={hairTile.label}
                       fill
                       className="object-cover"
                     />
-                    <div className="tile-label">
-                      <span>Hair</span>
+                    <div className="absolute inset-0 flex items-center justify-center bg-purple-300/20 backdrop-blur-[2px]">
+                      <div className="w-32 h-32 bg-purple-400/30 blur-3xl absolute rounded-full"></div>
+                      <span className="text-white font-bold text-2xl md:text-4xl drop-shadow-lg z-10 tracking-wide">
+                        Hair
+                      </span>
                     </div>
+                    <div className="absolute inset-1 rounded-tl-[35px] md:rounded-tl-[75px] border-2 border-[#FFFFFF]/50 pointer-events-none" />
                   </div>
                 </motion.div>
               ) : null}
@@ -185,18 +190,20 @@ export default function SignatureLookSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="signature-tile body-tile"
                 >
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full aspect-square rounded-br-[40px] md:rounded-br-[80px] overflow-hidden border-2 border-white shadow-[0_0_0_1px_rgba(255,237,250,1),0_0_0_6px_rgba(255,237,250,0.5)]">
                     <Image
                       src={bodyTile.image}
                       alt={bodyTile.label}
                       fill
                       className="object-cover"
                     />
-                    <div className="tile-label">
-                      <span>Body</span>
+                    <div className="absolute top-0 right-0 bg-gradient-to-bl from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-bl-[30px]">
+                      <span className="text-white font-semibold text-xl md:text-2xl tracking-wide">
+                        Body
+                      </span>
                     </div>
+                    <div className="absolute inset-1 rounded-br-[35px] md:rounded-br-[75px] border-2 border-[#FFFFFF]/50 pointer-events-none" />
                   </div>
                 </motion.div>
               ) : null}
@@ -207,18 +214,20 @@ export default function SignatureLookSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.15 }}
-                  className="signature-tile fragrance-tile"
                 >
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full aspect-square rounded-bl-[40px] md:rounded-bl-[80px] overflow-hidden border-2 border-white shadow-[0_0_0_1px_rgba(255,237,250,1),0_0_0_6px_rgba(255,237,250,0.5)]">
                     <Image
                       src={fragranceTile.image}
                       alt={fragranceTile.label}
                       fill
                       className="object-cover"
                     />
-                    <div className="tile-label">
-                      <span>Fragrance</span>
+                    <div className="absolute top-0 left-0 bg-gradient-to-br from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-br-[30px]">
+                      <span className="text-white font-semibold text-xl md:text-2xl tracking-wide">
+                        Fragrance
+                      </span>
                     </div>
+                    <div className="absolute inset-1 rounded-bl-[35px] md:rounded-bl-[75px] border-2 border-[#FFFFFF]/50 pointer-events-none" />
                   </div>
                 </motion.div>
               ) : null}
