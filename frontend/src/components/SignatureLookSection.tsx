@@ -149,7 +149,7 @@ export default function SignatureLookSection() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute bottom-0 right-0 bg-gradient-to-tl from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-tl-[30px]">
+                    <div className="absolute bottom-0 right-0 bg-linear-to-tl from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-tl-[30px]">
                       <span className="text-white font-semibold text-xl md:text-2xl tracking-wide">
                         Skin
                       </span>
@@ -198,7 +198,7 @@ export default function SignatureLookSection() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute top-0 right-0 bg-gradient-to-bl from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-bl-[30px]">
+                    <div className="absolute top-0 right-0 bg-linear-to-bl from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-bl-[30px]">
                       <span className="text-white font-semibold text-xl md:text-2xl tracking-wide">
                         Body
                       </span>
@@ -222,7 +222,7 @@ export default function SignatureLookSection() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute top-0 left-0 bg-gradient-to-br from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-br-[30px]">
+                    <div className="absolute top-0 left-0 bg-linear-to-br from-[#9d85c4]/90 to-[#cbb4f5]/80 backdrop-blur-md px-8 py-3 rounded-br-[30px]">
                       <span className="text-white font-semibold text-xl md:text-2xl tracking-wide">
                         Fragrance
                       </span>

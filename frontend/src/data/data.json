@@ -475,6 +475,26 @@
       }
     ]
   },
+  "glowUpDiaries": {
+    "subtitle": "Updates & Insights",
+    "title": "Glow Up Diaries",
+    "diaries": [
+      {
+        "id": 1,
+        "title": "Nourish your skin using pure organic care",
+        "description": "Treat your skin gently and naturally with organic products made to nourish, protect, and refresh.",
+        "image": "/images/diaries/image1.jpg",
+        "cta": "More"
+      },
+      {
+        "id": 2,
+        "title": "Pure vegan care for beautiful, healthy hair",
+        "description": "Refresh and strengthen your hair using natural care made to protect and deeply nourish",
+        "image": "/images/diaries/image2.jpg",
+        "cta": "More"
+      }
+    ]
+  },
   "footer": {
     "socialLinks": [
       { "name": "Facebook", "icon": "facebook", "href": "#" },
@@ -536,3 +556,4 @@
     "copyright": "Copyright - Shoppers park | Designed by PerkTech Solutions"
   }
 }
+ 
