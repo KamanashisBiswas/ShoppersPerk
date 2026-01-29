@@ -312,6 +312,76 @@
       }
     ]
   },
+  "signatureLook": {
+    "subtitle": "Gentleman's Touch",
+    "title": "Your Signature Look Starts Here",
+    "heroImage": "/images/signature/image1.jpg",
+    "tiles": [
+      {
+        "id": 1,
+        "label": "Skin",
+        "image": "/images/signature/image2.jpg"
+      },
+      {
+        "id": 2,
+        "label": "Hair",
+        "image": "/images/signature/image3.jpg"
+      },
+      {
+        "id": 3,
+        "label": "Body",
+        "image": "/images/signature/image4.jpg"
+      },
+      {
+        "id": 4,
+        "label": "Fragrance",
+        "image": "/images/signature/image5.jpg"
+      }
+    ],
+    "products": [
+      {
+        "id": 801,
+        "name": "Facewash for men",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "image": "/images/signature/image6.jpg"
+      },
+      {
+        "id": 802,
+        "name": "For men",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "image": "/images/signature/image7.jpg"
+      },
+      {
+        "id": 803,
+        "name": "Body & Face",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "image": "/images/signature/image8.jpg",
+        "showAddToCart": true
+      },
+      {
+        "id": 804,
+        "name": "For men",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "image": "/images/signature/image9.jpg"
+      },
+      {
+        "id": 805,
+        "name": "For men",
+        "variant": "Silver",
+        "price": 3000,
+        "discount": "-50%",
+        "image": "/images/signature/image6.jpg"
+      }
+    ]
+  },
   "softCare": {
     "subtitle": "Sweet Skin",
     "title": "Soft Care For Little Ones",

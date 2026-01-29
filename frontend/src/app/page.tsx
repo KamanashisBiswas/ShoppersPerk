@@ -8,6 +8,7 @@ import WeddingWhispersSection from "@/components/WeddingWhispersSection";
 import GlowWithNewBeautySection from "@/components/GlowWithNewBeautySection";
 import VibrantFestivalSection from "@/components/VibrantFestivalSection";
 import BirthdayGlamSection from "@/components/BirthdayGlamSection";
+import SignatureLookSection from "@/components/SignatureLookSection";
 import SoftCareSection from "@/components/SoftCareSection";
 import Footer from "@/components/Footer";
 
@@ -28,6 +29,7 @@ export default function Home() {
       <WeddingWhispersSection />
       <VibrantFestivalSection />
       <BirthdayGlamSection />
+      <SignatureLookSection />
       <SoftCareSection />
       <Footer />
     </div>
