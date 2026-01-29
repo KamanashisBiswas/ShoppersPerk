@@ -12,12 +12,7 @@ export default function GlowUpDiariesSection() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { glowUpDiaries } = offersData as any;
 
-  if (!glowUpDiaries) {
-    return null;
-  }
-
   const [activeIndex, setActiveIndex] = useState(0);
-  const totalDiaries = glowUpDiaries.diaries.length;
   const [visibleCount, setVisibleCount] = useState(2);
 
   useEffect(() => {
@@ -27,6 +22,12 @@ export default function GlowUpDiariesSection() {
     media.addEventListener("change", updateCount);
     return () => media.removeEventListener("change", updateCount);
   }, []);
+
+  if (!glowUpDiaries) {
+    return null;
+  }
+
+  const totalDiaries = glowUpDiaries.diaries.length;
 
   const handlePrev = () => {
     if (totalDiaries === 0) return;

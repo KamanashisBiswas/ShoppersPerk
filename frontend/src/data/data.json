@@ -495,6 +495,22 @@
       }
     ]
   },
+  "feedback": [
+    {
+      "id": 1,
+      "user": "Jessica L., Los Angeles, USA",
+      "image": "/images/feedback/image1.jpg",
+      "comment": "I'm so impressed with the variety and quality of products on this site! Everything arrives quickly and beautifully packaged. This has become my go-to place for all things beauty.",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "user": "Olivia M., London, UK",
+      "image": "/images/feedback/image2.jpg",
+      "comment": "I'm in love with the quality of these beauty products! Everything I've ordered so far has worked wonders. Fast delivery and excellent customer service too.",
+      "rating": 5
+    }
+  ],
   "footer": {
     "socialLinks": [
       { "name": "Facebook", "icon": "facebook", "href": "#" },
