@@ -6,7 +6,7 @@ export default function FeedbackSection() {
   const { feedback } = data;
 
   return (
-    <section className="w-full py-16 px-4 bg-[#FFFAFA]">
+    <section className="w-full py-16 px-4 bg-[#FFEDFA]">
       <div className="container mx-auto">
         <div className="flex flex-col items-center mb-12">
           <div className="bg-[#FFF0F5] text-[#AC1754] px-6 py-2 rounded-full mb-4 text-sm font-medium">

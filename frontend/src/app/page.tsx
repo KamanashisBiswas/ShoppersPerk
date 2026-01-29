@@ -13,6 +13,7 @@ import SoftCareSection from "@/components/SoftCareSection";
 import GlowUpDiariesSection from "@/components/GlowUpDiariesSection";
 import RequestProductSection from "@/components/RequestProductSection";
 import FeedbackSection from "@/components/FeedbackSection";
+import ProductGallerySection from "@/components/ProductGallerySection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
       <GlowUpDiariesSection />
       <RequestProductSection />
       <FeedbackSection />
+      <ProductGallerySection />
       <Footer />
     </div>
   );
