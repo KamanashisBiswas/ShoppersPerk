@@ -62,7 +62,7 @@ export default function FeedbackSection() {
                     className="object-cover"
                   />
                 </div>
-                <div className="h-[1px] bg-[#E8D7DE] flex-grow mx-2"></div>
+                <div className="h-px bg-[#E8D7DE] grow mx-2"></div>
                 <div className="text-[#AC1754] font-medium text-sm md:text-base whitespace-nowrap">
                   {item.user}
                 </div>

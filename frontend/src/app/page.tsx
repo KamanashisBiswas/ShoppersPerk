@@ -11,6 +11,7 @@ import BirthdayGlamSection from "@/components/BirthdayGlamSection";
 import SignatureLookSection from "@/components/SignatureLookSection";
 import SoftCareSection from "@/components/SoftCareSection";
 import GlowUpDiariesSection from "@/components/GlowUpDiariesSection";
+import RequestProductSection from "@/components/RequestProductSection";
 import FeedbackSection from "@/components/FeedbackSection";
 import Footer from "@/components/Footer";
 
@@ -34,6 +35,7 @@ export default function Home() {
       <SoftCareSection />
       <SignatureLookSection />
       <GlowUpDiariesSection />
+      <RequestProductSection />
       <FeedbackSection />
       <Footer />
     </div>

@@ -47,9 +47,10 @@ export default function BirthdayGlamSection() {
   };
 
   return (
-    <section className="w-full py-12 md:py-20 px-4 bg-[#FFEDFA] relative overflow-hidden">
+    <section className="w-full py-16 px-4 bg-[#FFEDFA] relative overflow-hidden">
       <div className="container mx-auto">
         {/* --- Header Section --- */}
+
         <div className="flex flex-col items-start gap-3 md:gap-4 pl-0 md:pl-2">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
