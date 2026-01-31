@@ -1,9 +1,51 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useRef } from "react";
 import SectionTitle from "./SectionTitle";
 
 export default function RequestProductSection() {
+  const [files, setFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    const droppedFiles = Array.from(e.dataTransfer.files);
+    addFiles(droppedFiles);
+  };
+
+  const handleBrowse = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const selectedFiles = Array.from(e.target.files);
+      addFiles(selectedFiles);
+    }
+  };
+
+  const addFiles = (newFiles: File[]) => {
+    // Filter out limits if needed, here we just take the first 2 if strict, or append up to 2
+    // User requirement: "2ta image upload kora jabe" (can upload 2 images)
+    
+    setFiles((prev) => {
+      const remainingSlots = 2 - prev.length;
+      if (remainingSlots <= 0) return prev;
+      
+      const filesToAdd = newFiles.slice(0, remainingSlots);
+      return [...prev, ...filesToAdd];
+    });
+  };
+
+  const removeFile = (index: number) => {
+    setFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
     <section className="w-full py-16 px-4 bg-[#FFEDFA]">
       <div className="container mx-auto">
@@ -17,7 +59,7 @@ export default function RequestProductSection() {
         <div className="flex flex-col lg:flex-row gap-8 items-stretch justify-center">
           {/* Left Side: Form */}
           <div className="w-full lg:w-3/5 bg-[#FFF0F5] rounded-3xl p-8 md:p-12 shadow-sm">
-            <form className="flex flex-col gap-6">
+            <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
               {/* Name Fields */}
               <div>
                 <label className="block text-[#FA5252] text-sm font-medium mb-2">
@@ -115,7 +157,20 @@ export default function RequestProductSection() {
               {/* File Upload Area */}
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Upload Box */}
-                <div className="w-full md:w-1/2 bg-white border-2 border-black rounded-xl p-6 flex flex-col items-center justify-center text-center min-h-[160px]">
+                <div
+                  className="w-full md:w-1/2 bg-white border-2 border-black rounded-xl p-6 flex flex-col items-center justify-center text-center min-h-[160px] cursor-pointer hover:bg-gray-50 transition-colors"
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                  onClick={handleBrowse}
+                >
+                  <input
+                    type="file"
+                    multiple
+                    className="hidden"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    accept="image/*,.pdf,.doc,.docx" // Broaden as per design "any file" but focus images
+                  />
                   <div className="mb-4 relative">
                     {/* Image Icon */}
                     <svg
@@ -180,83 +235,87 @@ export default function RequestProductSection() {
                 </div>
 
                 {/* File List Box */}
-                <div className="w-full md:w-1/2 bg-white border border-pink-200 rounded-3xl p-6 flex flex-col justify-center gap-6">
-                  {[1, 2].map((_, idx) => (
-                    <div key={idx} className="flex flex-col gap-2">
-                      <div className="flex items-center gap-4">
-                        <div className="relative shrink-0">
-                          <svg
-                            width="40"
-                            height="40"
-                            viewBox="0 0 40 40"
-                            fill="none"
-                          >
-                            <rect
+                {files.length > 0 && (
+                  <div className="w-full md:w-1/2 bg-white border border-pink-200 rounded-3xl p-6 flex flex-col justify-center gap-6">
+                    {files.map((file, idx) => (
+                      <div key={idx} className="flex flex-col gap-2">
+                        <div className="flex items-center gap-4">
+                          <div className="relative shrink-0">
+                            <svg
                               width="40"
                               height="40"
-                              rx="8"
-                              fill="#FEE2E2"
-                            />
-                            <circle
-                              cx="14"
-                              cy="14"
-                              r="3"
-                              fill="white"
-                              fillOpacity="0.5"
-                            />
-                            <path
-                              d="M30 24L24 18L10 32"
-                              stroke="white"
+                              viewBox="0 0 40 40"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                width="40"
+                                height="40"
+                                rx="8"
+                                fill="#FEE2E2"
+                              />
+                              <circle
+                                cx="14"
+                                cy="14"
+                                r="3"
+                                fill="white"
+                                fillOpacity="0.5"
+                              />
+                              <path
+                                d="M30 24L24 18L10 32"
+                                stroke="white"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                            <div className="absolute -bottom-1 -right-1 bg-[#F43F5E] rounded-full p-1 border-2 border-white">
+                              <svg
+                                width="8"
+                                height="8"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="white"
+                                strokeWidth="4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                              </svg>
+                            </div>
+                          </div>
+
+                          <span className="text-sm text-[#F43F5E] font-medium flex-1 truncate max-w-[150px]">
+                            {file.name}
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() => removeFile(idx)}
+                            className="text-[#F43F5E] hover:text-red-700"
+                          >
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
                               strokeWidth="2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                            />
-                          </svg>
-                          <div className="absolute -bottom-1 -right-1 bg-[#F43F5E] rounded-full p-1 border-2 border-white">
-                            <svg
-                              width="8"
-                              height="8"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="white"
-                              strokeWidth="4"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
                             >
-                              <polyline points="20 6 9 17 4 12"></polyline>
+                              <circle cx="12" cy="12" r="10" />
+                              <line x1="15" y1="9" x2="9" y2="15" />
+                              <line x1="9" y1="9" x2="15" y2="15" />
                             </svg>
-                          </div>
+                          </button>
                         </div>
-
-                        <span className="text-sm text-[#F43F5E] font-medium flex-1">
-                          Image.png
-                        </span>
-
-                        <button
-                          type="button"
-                          className="text-[#F43F5E] hover:text-red-700"
-                        >
-                          <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <circle cx="12" cy="12" r="10" />
-                            <line x1="15" y1="9" x2="9" y2="15" />
-                            <line x1="9" y1="9" x2="15" y2="15" />
-                          </svg>
-                        </button>
+                        {/* Progress Line */}
+                        <div className="h-0.5 bg-[#BE185D] rounded-full ml-14 w-[calc(100%-56px)]"></div>
                       </div>
-                      {/* Progress Line */}
-                      <div className="h-0.5 bg-[#BE185D] rounded-full ml-14 w-[calc(100%-56px)]"></div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Submit Button */}
