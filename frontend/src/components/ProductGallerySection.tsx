@@ -24,7 +24,7 @@ export default function ProductGallerySection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative w-full aspect-[9/16] lg:aspect-[3/5] group overflow-hidden"
+              className="relative w-full aspect-9/16 lg:aspect-3/5 group overflow-hidden"
             >
               <Image
                 src={src}
