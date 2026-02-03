@@ -8,6 +8,7 @@ import { MdLock, MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { API_BASE_URL } from '@/utils/apiConfig';
 
 const ResetPasswordPage = ({ params }: { params: Promise<{ token: string }> }) => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const ResetPasswordPage = ({ params }: { params: Promise<{ token: string }> }) =
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/resetpassword/${token}`, {
+      const res = await fetch(`${API_BASE_URL}/auth/resetpassword/${token}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
