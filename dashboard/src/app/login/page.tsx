@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 
 const LoginPage = () => {
-  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -23,8 +23,39 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    console.log('Login attempt:', { email, password });
-    router.push('/dashboard');
+    setIsLoading(true);
+    
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Store auth data
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify({
+          name: data.name,
+          email: data.email,
+          role: data.role,
+          id: data._id
+        }));
+        
+        // Force a simplified reload/redirect to ensure sidebar picks up the change immediately
+        window.location.href = '/dashboard';
+      } else {
+        setError(data.message || 'Login failed');
+        setIsLoading(false);
+      }
+    } catch (err) {
+      setError('Failed to connect to server');
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -117,7 +148,7 @@ const LoginPage = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-[38px] text-gray-500 hover:text-white transition-colors"
+                className="absolute right-4 top-[38px] text-gray-500 hover:text-white transition-colors cursor-pointer"
                 tabIndex={-1}
               >
                 {showPassword ? <MdVisibilityOff size={20} /> : <MdVisibility size={20} />}
@@ -150,8 +181,20 @@ const LoginPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <Button type="submit" className="w-full text-lg shadow-purple-500/40">
-                Sign In
+              <Button 
+                type="submit" 
+                className="w-full text-lg shadow-purple-500/40 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Signing In...
+                  </span>
+                ) : 'Sign In'}
               </Button>
             </motion.div>
           </form>

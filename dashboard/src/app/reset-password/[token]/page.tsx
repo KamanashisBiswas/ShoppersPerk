@@ -83,7 +83,7 @@ const ResetPasswordPage = ({ params }: { params: Promise<{ token: string }> }) =
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-[38px] text-gray-500 hover:text-white transition-colors"
+                className="absolute right-4 top-[38px] text-gray-500 hover:text-white transition-colors cursor-pointer"
               >
                 {showPassword ? <MdVisibilityOff size={20} /> : <MdVisibility size={20} />}
               </button>
@@ -101,7 +101,7 @@ const ResetPasswordPage = ({ params }: { params: Promise<{ token: string }> }) =
               />
             </div>
 
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button type="submit" className="w-full cursor-pointer" disabled={loading}>
               {loading ? 'Resetting...' : 'Reset Password'}
             </Button>
           </form>

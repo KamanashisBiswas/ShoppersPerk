@@ -88,15 +88,15 @@ const ForgotPasswordPage = () => {
                 <p className="text-green-400 text-sm mb-2">Reset Token Generated:</p>
                 <div className="flex items-center gap-2 bg-black/30 p-2 rounded-lg break-all">
                   <code className="text-sm font-mono text-white/80">{resetToken}</code>
-                  <button onClick={copyToken} className="p-2 hover:bg-white/10 rounded-lg transition-colors text-white/60 hover:text-white">
+                  <button onClick={copyToken} className="p-2 hover:bg-white/10 rounded-lg transition-colors text-white/60 hover:text-white cursor-pointer">
                     <MdContentCopy />
                   </button>
                 </div>
               </div>
               
-              <Link href={`/reset-password/${resetToken}`}>
+              <Link href="/reset-password">
                 <Button className="w-full mt-4">
-                  Proceed to Reset Password
+                  Proceed to Verification
                 </Button>
               </Link>
             </div>

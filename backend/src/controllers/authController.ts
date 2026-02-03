@@ -38,7 +38,6 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       res.status(400).json({ message: 'Invalid user data' });
     }
   } catch (error) {
-    console.error('Register Error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -50,6 +49,11 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
+      // Update last login and increment login count
+      user.lastLogin = new Date();
+      user.loginCount = (user.loginCount || 0) + 1;
+      await user.save({ validateBeforeSave: false });
+
       res.json({
         _id: user.id,
         name: user.name,
@@ -61,7 +65,6 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       res.status(401).json({ message: 'Invalid email or password' });
     }
   } catch (error) {
-    console.error('Login Error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -88,7 +91,6 @@ export const forgotPassword = async (req: Request, res: Response): Promise<void>
       message: 'Password reset token generated. Copy this token to reset your password.',
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -124,7 +126,15 @@ export const resetPassword = async (req: Request, res: Response): Promise<void> 
       message: 'Password updated successfully',
     });
   } catch (error) {
-    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+// Get all users
+export const getUsers = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const users = await User.find({}).select('-password').sort({ createdAt: -1 });
+    res.json(users);
+  } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
 };
