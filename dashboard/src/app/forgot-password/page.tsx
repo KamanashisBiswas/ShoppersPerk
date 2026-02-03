@@ -7,6 +7,7 @@ import { MdEmail, MdContentCopy } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { API_BASE_URL } from '@/utils/apiConfig';
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const ForgotPasswordPage = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/forgotpassword', {
+      const res = await fetch(`${API_BASE_URL}/auth/forgotpassword`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

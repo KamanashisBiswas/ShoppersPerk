@@ -12,6 +12,7 @@ import {
 } from 'react-icons/md';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { API_BASE_URL } from '@/utils/apiConfig';
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +27,7 @@ const LoginPage = () => {
     setIsLoading(true);
     
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -8,6 +8,7 @@ import { MdLock, MdVisibility, MdVisibilityOff, MdVpnKey } from 'react-icons/md'
 import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { API_BASE_URL } from '@/utils/apiConfig';
 
 const ResetPasswordContent = () => {
   const router = useRouter();
@@ -38,7 +39,7 @@ const ResetPasswordContent = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/resetpassword/${token}`, {
+      const res = await fetch(`${API_BASE_URL}/auth/resetpassword/${token}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
