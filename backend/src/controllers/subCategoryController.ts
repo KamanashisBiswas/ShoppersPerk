@@ -64,6 +64,10 @@ export const updateSubCategory = async (req: Request, res: Response) => {
         return res.status(404).json({ message: 'Sub-Category not found' });
     }
 
+    if (!existingItem.createdBy && req.user) {
+        existingItem.createdBy = req.user._id;
+    }
+
     if (parentCategory) {
         const categoryExists = await Category.findById(parentCategory);
         if (!categoryExists) {

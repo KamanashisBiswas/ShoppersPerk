@@ -7,6 +7,7 @@ export interface IBrand extends Document {
   description?: string;
   image: string;
   isActive: boolean;
+  createdBy: mongoose.Schema.Types.ObjectId;
 }
 
 const BrandSchema: Schema = new Schema({
@@ -15,7 +16,7 @@ const BrandSchema: Schema = new Schema({
   description: { type: String },
   image: { type: String, required: true },
   isActive: { type: Boolean, default: true },
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 }, { timestamps: true });
 
 BrandSchema.pre('save', async function () {

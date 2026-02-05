@@ -8,6 +8,7 @@ export interface ISubCategory extends Document {
   description?: string;
   image: string;
   isActive: boolean;
+  createdBy: mongoose.Schema.Types.ObjectId;
 }
 
 const SubCategorySchema: Schema = new Schema({
@@ -17,7 +18,7 @@ const SubCategorySchema: Schema = new Schema({
   description: { type: String },
   image: { type: String, required: true },
   isActive: { type: Boolean, default: true },
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 }, { timestamps: true });
 
 SubCategorySchema.pre('save', async function () {

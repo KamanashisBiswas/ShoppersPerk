@@ -18,6 +18,7 @@ interface BrandItem {
   createdBy?: {
       name: string;
   };
+  createdAt?: string;
 }
 
 export default function BrandManagement() {
@@ -462,7 +463,7 @@ export default function BrandManagement() {
 
                     <div className="flex items-center justify-between text-xs text-gray-500 pt-2 px-2">
                          <span className="flex items-center gap-2">
-                            <MdDateRange /> Created: {new Date().toLocaleDateString()} 
+                            <MdDateRange /> Created: {detailsItem.createdAt ? new Date(detailsItem.createdAt).toLocaleDateString() : 'N/A'}
                          </span>
                         {detailsItem.createdBy && (
                             <span className="flex items-center gap-2">

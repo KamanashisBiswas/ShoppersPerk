@@ -65,6 +65,11 @@ export const updateCarouselItem = async (req: Request, res: Response) => {
         return res.status(404).json({ message: 'Item not found' });
     }
 
+    // Handle legacy items: if createdBy is missing, assign current admin
+    if (!existingItem.createdBy && req.user) {
+        existingItem.createdBy = req.user._id;
+    }
+
     // 1. Validation (if any specific logic needed)
 
     // 2. Upload Image (If provided)

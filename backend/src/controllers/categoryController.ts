@@ -58,6 +58,10 @@ export const updateCategory = async (req: Request, res: Response) => {
         return res.status(404).json({ message: 'Category not found' });
     }
 
+    if (!existingItem.createdBy && req.user) {
+        existingItem.createdBy = req.user._id;
+    }
+
     let imageUrl = existingItem.image;
     
     if (req.file) {

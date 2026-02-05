@@ -21,6 +21,7 @@ interface CarouselItem {
   createdBy?: {
     name: string;
   };
+  createdAt?: string;
 }
 
 export default function CarouselManagement() {
@@ -544,7 +545,7 @@ export default function CarouselManagement() {
                          <span>ID: <span className="font-mono text-gray-400">{detailsItem.carouselId}</span></span>
                          <div className="flex items-center gap-4">
                              <span className="flex items-center gap-2">
-                                <MdDateRange /> Created: {new Date().toLocaleDateString()} 
+                                <MdDateRange /> Created: {detailsItem.createdAt ? new Date(detailsItem.createdAt).toLocaleDateString() : 'N/A'}
                              </span>
                              {detailsItem.createdBy && (
                                 <span className="flex items-center gap-2">
