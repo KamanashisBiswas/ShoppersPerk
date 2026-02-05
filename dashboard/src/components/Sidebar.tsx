@@ -11,7 +11,8 @@ import {
   MdSettings, 
   MdLogout,
   MdMenu,
-  MdClose
+  MdClose,
+  MdViewCarousel
 } from 'react-icons/md';
 
 const Sidebar = () => {
@@ -34,7 +35,10 @@ const Sidebar = () => {
 
   const links = [
     { name: 'Overview', href: '/dashboard', icon: MdDashboard },
-    ...(userRole === 'admin' ? [{ name: 'Users', href: '/dashboard/users', icon: MdPeople }] : []),
+    ...(userRole === 'admin' ? [
+      { name: 'Users', href: '/dashboard/users', icon: MdPeople },
+      { name: 'Carousel', href: '/dashboard/carousel', icon: MdViewCarousel }
+    ] : []),
   ];
 
   const handleSignOut = () => {

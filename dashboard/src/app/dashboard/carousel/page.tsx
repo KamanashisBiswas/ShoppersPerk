@@ -1,0 +1,415 @@
+
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { API_BASE_URL } from '@/utils/apiConfig';
+import toast from 'react-hot-toast';
+import { MdAdd, MdEdit, MdDelete, MdLink, MdCloudUpload, MdClose, MdImage, MdTitle, MdSort, MdLink as MdLinkIcon } from 'react-icons/md';
+import Modal from '@/components/ui/Modal';
+import { motion } from 'framer-motion';
+import ConfirmModal from '@/components/ui/ConfirmModal';
+
+interface CarouselItem {
+  _id: string;
+  carouselId: string;
+  image: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  href?: string;
+  order: number;
+}
+
+export default function CarouselManagement() {
+  const [items, setItems] = useState<CarouselItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingItem, setEditingItem] = useState<CarouselItem | null>(null);
+
+  // Delete State
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Form State
+  const [formData, setFormData] = useState({
+    title: '',
+    subtitle: '',
+    description: '',
+    href: '',
+    order: 0,
+  });
+  
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string>('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const fetchItems = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/carousel`);
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setItems(data);
+      } else {
+        setItems([]);
+      }
+    } catch (error) {
+      toast.error('Failed to fetch carousel items');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const handleOpenModal = (item?: CarouselItem) => {
+    if (item) {
+      setEditingItem(item);
+      setFormData({
+        title: item.title || '',
+        subtitle: item.subtitle || '',
+        description: item.description || '',
+        href: item.href || '',
+        order: item.order || 0,
+      });
+      setPreviewUrl(item.image); // Show existing image as preview
+      setSelectedFile(null);
+    } else {
+      setEditingItem(null);
+      setFormData({
+        title: '',
+        subtitle: '',
+        description: '',
+        href: '',
+        order: items.length + 1,
+      });
+      setPreviewUrl('');
+      setSelectedFile(null);
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setSelectedFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        toast.error('Not authenticated');
+        return;
+    }
+
+    // 1. Validation Logic
+    if (!editingItem && !selectedFile) {
+        toast.error('Please select an image for the new slide.');
+        return;
+    }
+
+    /* Additional Validations if needed */
+    if (!formData.title.trim()) {
+         toast.error('Title is required (for internal reference at least).');
+         return; 
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Use carouselId for Update URL if editing
+      const url = editingItem
+        ? `${API_BASE_URL}/carousel/${editingItem.carouselId}`
+        : `${API_BASE_URL}/carousel`;
+      const method = editingItem ? 'PUT' : 'POST';
+
+      // 2. Prepare FormData
+      const data = new FormData();
+      if (selectedFile) {
+          data.append('image', selectedFile);
+      }
+      data.append('title', formData.title);
+      data.append('subtitle', formData.subtitle);
+      data.append('description', formData.description);
+      data.append('href', formData.href);
+      data.append('order', formData.order.toString());
+
+      const res = await fetch(url, {
+        method,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: data,
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        const errorMessage = errorData.message || (errorData.errors && errorData.errors[0]?.msg) || 'An error occurred';
+        throw new Error(errorMessage);
+      }
+
+      toast.success(editingItem ? 'Slide updated successfully' : 'Slide created successfully');
+      setIsModalOpen(false);
+      fetchItems();
+    } catch (error: any) {
+      toast.error(error.message || 'Something went wrong');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const confirmDelete = (id: string) => {
+      setItemToDelete(id); // This MUST be carouselId
+      setIsDeleteModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    if (!itemToDelete) return;
+
+    setIsDeleting(true);
+    const token = localStorage.getItem('token');
+    
+    try {
+      const res = await fetch(`${API_BASE_URL}/carousel/${itemToDelete}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) throw new Error('Failed to delete');
+
+      toast.success('Slide deleted');
+      fetchItems();
+      setIsDeleteModalOpen(false);
+    } catch (error) {
+      toast.error('Failed to delete slide');
+    } finally {
+      setIsDeleting(false);
+      setItemToDelete(null);
+    }
+  };
+
+  if (loading) return <div className="p-8 text-white">Loading...</div>;
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+           <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+             Carousel Management
+           </h1>
+           <p className="text-gray-400 mt-1">Manage your homepage slider content</p>
+        </div>
+        
+        <button
+          onClick={() => handleOpenModal()}
+          className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-xl transition-all shadow-lg hover:shadow-purple-500/25 active:scale-95 text-white font-medium"
+        >
+          <MdAdd size={20} /> Add New Slide
+        </button>
+      </div>
+
+      {/* Table Section */}
+      <div className="bg-[#0a0a0a] border border-white/5 rounded-3xl overflow-hidden backdrop-blur-xl shadow-2xl">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-white/5 bg-white/[0.02]">
+                <th className="px-6 py-5 text-left text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center gap-2">
+                    <MdImage size={16} /> Image
+                </th>
+                <th className="px-6 py-5 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    <div className="flex items-center gap-2"><MdTitle size={16} /> ID & Content</div>
+                </th>
+                <th className="px-6 py-5 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    <div className="flex items-center gap-2"><MdSort size={16} /> Order</div>
+                </th>
+                 <th className="px-6 py-5 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+                    <div className="flex items-center gap-2"><MdLinkIcon size={16} /> Link</div>
+                </th>
+                <th className="px-6 py-5 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {items.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                    No slides found. Add your first slide above.
+                  </td>
+                </tr>
+              ) : (
+                items.map((item) => (
+                  <motion.tr 
+                    key={item._id}
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="hover:bg-white/[0.02] transition-colors group"
+                  >
+                    <td className="px-6 py-4">
+                      <div className="relative w-32 h-20 rounded-lg overflow-hidden border border-white/10 shadow-sm group-hover:shadow-md transition-all">
+                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                        <div className="flex flex-col">
+                            <span className="text-xs font-mono text-purple-400 mb-1">{item.carouselId || '-'}</span>
+                            <span className="font-semibold text-white text-base group-hover:text-purple-300 transition-colors">{item.title || 'Untitled'}</span>
+                            <span className="text-sm text-gray-500">{item.subtitle}</span>
+                            <span className="text-xs text-gray-600 mt-1 line-clamp-1">{item.description}</span>
+                        </div>
+                    </td>
+                    <td className="px-6 py-4">
+                        <span className="px-3 py-1 bg-white/5 rounded-full text-xs font-mono text-gray-400 border border-white/5">
+                            #{item.order}
+                        </span>
+                    </td>
+                    <td className="px-6 py-4">
+                        <span className="text-sm text-blue-400 hover:underline cursor-pointer truncate max-w-[150px] block">
+                            {item.href || '-'}
+                        </span>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                       <div className="flex items-center justify-end gap-2">
+                           <button 
+                             onClick={() => handleOpenModal(item)}
+                             className="p-2 bg-blue-500/10 hover:bg-blue-500 text-blue-500 hover:text-white rounded-lg transition-all duration-200"
+                             title="Edit"
+                           >
+                             <MdEdit size={18} />
+                           </button>
+                           <button 
+                             onClick={() => confirmDelete(item.carouselId)}
+                             className="p-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg transition-all duration-200"
+                             title="Delete"
+                           >
+                             <MdDelete size={18} />
+                           </button>
+                       </div>
+                    </td>
+                  </motion.tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <ConfirmModal
+         isOpen={isDeleteModalOpen}
+         onClose={() => setIsDeleteModalOpen(false)}
+         onConfirm={handleDelete}
+         isLoading={isDeleting}
+         title="Delete Slide"
+         message="Are you sure you want to delete this slide? This action will permanently remove the slide and its image."
+      />
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={`${editingItem ? 'Edit' : 'Add'} MakeOver Slide`}
+      >
+        <form onSubmit={handleSubmit} className="space-y-5 text-gray-300">
+            
+            {/* Image Upload Area */}
+            <div className={`border-2 border-dashed rounded-xl p-4 flex flex-col items-center justify-center transition-colors cursor-pointer relative ${previewUrl ? 'border-purple-500/50 bg-purple-500/5' : 'border-white/20 hover:border-purple-500/50 hover:bg-white/5'}`}
+                 onClick={() => fileInputRef.current?.click()}>
+                 
+                 <input 
+                    type="file" 
+                    hidden 
+                    accept="image/*"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                 />
+
+                 {previewUrl ? (
+                    <div className="relative w-full h-48 rounded-lg overflow-hidden">
+                        <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                             <p className="text-white font-medium flex items-center gap-2"><MdEdit /> Change Image</p>
+                        </div>
+                    </div>
+                 ) : (
+                    <div className="py-8 text-center">
+                        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white mx-auto mb-3">
+                            <MdCloudUpload size={24} />
+                        </div>
+                        <p className="font-medium text-white">Click to upload slide image</p>
+                        <p className="text-xs text-gray-500 mt-1">SVG, PNG, JPG or GIF (max. 5MB)</p>
+                    </div>
+                 )}
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+                <div className="col-span-2">
+                    <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Title</label>
+                    <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} 
+                           className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
+                           placeholder="e.g. Summer Collection"
+                    />
+                </div>
+                
+                 <div className="col-span-2 md:col-span-1">
+                    <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Subtitle</label>
+                    <input type="text" value={formData.subtitle} onChange={e => setFormData({...formData, subtitle: e.target.value})} 
+                           className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
+                           placeholder="e.g. Up to 50% Off"
+                    />
+                </div>
+
+                <div className="col-span-2 md:col-span-1">
+                     <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Sort Order</label>
+                     <input type="number" value={formData.order} onChange={e => setFormData({...formData, order: parseInt(e.target.value)})} 
+                            className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
+                     />
+                </div>
+            </div>
+            
+            <div>
+                <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Description</label>
+                <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} 
+                          className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600 min-h-[100px]" 
+                          placeholder="Brief description for the slide..."
+                />
+            </div>
+
+            <div>
+                <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Link URL</label>
+                <div className="relative">
+                    <input type="text" value={formData.href} onChange={e => setFormData({...formData, href: e.target.value})} 
+                           className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl pl-10 pr-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
+                           placeholder="/collections/summer"
+                    />
+                    <MdLinkIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
+                </div>
+            </div>
+
+            <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-semibold py-3.5 rounded-xl mt-4 transition-all shadow-lg hover:shadow-purple-500/25 active:scale-[0.98] cursor-pointer flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+                {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        {editingItem ? 'Updating...' : 'Creating...'}
+                    </span>
+                ) : (
+                    editingItem ? 'Update Slide' : 'Create Slide'
+                )}
+            </button>
+        </form>
+      </Modal>
+    </div>
+  );
+}

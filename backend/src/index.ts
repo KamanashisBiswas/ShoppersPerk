@@ -6,6 +6,7 @@ import rateLimit from 'express-rate-limit';
 import connectDB from './config/db';
 
 import authRoutes from './routes/authRoutes';
+import carouselRoutes from './routes/carouselRoutes';
 
 dotenv.config();
 
@@ -35,14 +36,28 @@ app.use(express.json());
 
 
 app.use('/api/auth', authRoutes);
+app.use('/api/carousel', carouselRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
+import multer from 'multer';
+
 // Global error handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  res.status(500).json({ message: 'Server error', error: err.message });
+  if (err instanceof multer.MulterError) {
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      res.status(400).json({ message: 'File is too large. Maximum limit is 5MB.' });
+      return;
+    }
+    res.status(400).json({ message: err.message });
+    return;
+  }
+  
+  // Custom errors might pass status code
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode).json({ message: err.message || 'Server error', error: process.env.NODE_ENV === 'production' ? null : err.message });
 });
 
 app.listen(PORT, () => {
