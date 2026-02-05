@@ -3,42 +3,40 @@
 import { useState, useEffect, useRef } from 'react';
 import { API_BASE_URL } from '@/utils/apiConfig';
 import toast from 'react-hot-toast';
-import { MdAdd, MdEdit, MdDelete, MdLink, MdCloudUpload, MdClose, MdImage, MdTitle, MdSort, MdVisibility, MdLink as MdLinkIcon, MdDateRange, MdToggleOn } from 'react-icons/md';
+import { MdAdd, MdEdit, MdDelete, MdCloudUpload, MdImage, MdTitle, MdVisibility, MdDateRange, MdDescription, MdNumbers, MdClose } from 'react-icons/md';
 import Modal from '@/components/ui/Modal';
 import { motion } from 'framer-motion';
 import ConfirmModal from '@/components/ui/ConfirmModal';
 
-interface CarouselItem {
+interface CategoryItem {
   _id: string;
-  carouselId: string;
+  categoryId: string;
   image: string;
-  title?: string;
-  subtitle?: string;
+  name: string;
   description?: string;
-  href?: string;
-  order: number;
   isActive: boolean;
 }
 
-export default function CarouselManagement() {
-  const [items, setItems] = useState<CarouselItem[]>([]);
+export default function CategoryManagement() {
+  const [items, setItems] = useState<CategoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingItem, setEditingItem] = useState<CarouselItem | null>(null);
+  const [editingItem, setEditingItem] = useState<CategoryItem | null>(null);
 
   // Delete State
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // Details State
+  const [detailsItem, setDetailsItem] = useState<CategoryItem | null>(null);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+
   // Form State
   const [formData, setFormData] = useState({
-    title: '',
-    subtitle: '',
+    name: '',
     description: '',
-    href: '',
-    order: 0,
     isActive: true,
   });
   
@@ -46,9 +44,11 @@ export default function CarouselManagement() {
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [userRole, setUserRole] = useState<string>('');
+
   const fetchItems = async () => {
     try {
-      const res = await fetch(`${API_BASE_URL}/carousel`);
+      const res = await fetch(`${API_BASE_URL}/category`);
       const data = await res.json();
       if (Array.isArray(data)) {
         setItems(data);
@@ -56,13 +56,11 @@ export default function CarouselManagement() {
         setItems([]);
       }
     } catch (error) {
-      toast.error('Failed to fetch carousel items');
+      toast.error('Failed to fetch categories');
     } finally {
       setLoading(false);
     }
   };
-
-  const [userRole, setUserRole] = useState<string>('');
 
   useEffect(() => {
     fetchItems();
@@ -77,16 +75,7 @@ export default function CarouselManagement() {
     }
   }, []);
 
-  const [detailsItem, setDetailsItem] = useState<CarouselItem | null>(null);
-  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
-
-  const handleViewDetails = (item: CarouselItem) => {
-     setDetailsItem(item);
-     setIsDetailsModalOpen(true);
-  };
-
-  const handleOpenModal = (item?: CarouselItem) => {
-    // ... existing handleOpenModal code ...
+  const handleOpenModal = (item?: CategoryItem) => {
     if (userRole !== 'admin') {
         toast.error('Access Denied: Admins only');
         return;
@@ -94,23 +83,17 @@ export default function CarouselManagement() {
     if (item) {
       setEditingItem(item);
       setFormData({
-        title: item.title || '',
-        subtitle: item.subtitle || '',
+        name: item.name || '',
         description: item.description || '',
-        href: item.href || '',
-        order: item.order || 0,
         isActive: item.isActive !== undefined ? item.isActive : true,
       });
-      setPreviewUrl(item.image); // Show existing image as preview
+      setPreviewUrl(item.image);
       setSelectedFile(null);
     } else {
       setEditingItem(null);
       setFormData({
-        title: '',
-        subtitle: '',
+        name: '',
         description: '',
-        href: '',
-        order: items.length + 1,
         isActive: true,
       });
       setPreviewUrl('');
@@ -119,7 +102,10 @@ export default function CarouselManagement() {
     setIsModalOpen(true);
   };
 
-  // ... existing handlers ...
+  const handleViewDetails = (item: CategoryItem) => {
+     setDetailsItem(item);
+     setIsDetailsModalOpen(true);
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -142,54 +128,44 @@ export default function CarouselManagement() {
         return;
     }
 
-    // 1. Validation Logic
     if (!editingItem && !selectedFile) {
-        toast.error('Please select an image for the new slide.');
+        toast.error('Please select an image for the category.');
         return;
     }
 
-    /* Additional Validations if needed */
-    if (!formData.title.trim()) {
-         toast.error('Title is required (for internal reference at least).');
+    if (!formData.name.trim()) {
+         toast.error('Name is required.');
          return; 
     }
 
     setIsSubmitting(true);
 
     try {
-      // Use carouselId for Update URL if editing
       const url = editingItem
-        ? `${API_BASE_URL}/carousel/${editingItem.carouselId}`
-        : `${API_BASE_URL}/carousel`;
+        ? `${API_BASE_URL}/category/${editingItem.categoryId}`
+        : `${API_BASE_URL}/category`;
       const method = editingItem ? 'PUT' : 'POST';
 
-      // 2. Prepare FormData
       const data = new FormData();
       if (selectedFile) {
           data.append('image', selectedFile);
       }
-      data.append('title', formData.title);
-      data.append('subtitle', formData.subtitle);
+      data.append('name', formData.name);
       data.append('description', formData.description);
-      data.append('href', formData.href);
-      data.append('order', formData.order.toString());
       data.append('isActive', formData.isActive.toString());
 
       const res = await fetch(url, {
         method,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
         body: data,
       });
 
       if (!res.ok) {
         const errorData = await res.json();
-        const errorMessage = errorData.message || (errorData.errors && errorData.errors[0]?.msg) || 'An error occurred';
-        throw new Error(errorMessage);
+        throw new Error(errorData.message || 'An error occurred');
       }
 
-      toast.success(editingItem ? 'Slide updated successfully' : 'Slide created successfully');
+      toast.success(editingItem ? 'Category updated successfully' : 'Category created successfully');
       setIsModalOpen(false);
       fetchItems();
     } catch (error: any) {
@@ -204,7 +180,7 @@ export default function CarouselManagement() {
          toast.error('Access Denied: Admins only');
          return;
       }
-      setItemToDelete(id); // This MUST be carouselId
+      setItemToDelete(id);
       setIsDeleteModalOpen(true);
   };
 
@@ -219,18 +195,18 @@ export default function CarouselManagement() {
     const token = localStorage.getItem('token');
     
     try {
-      const res = await fetch(`${API_BASE_URL}/carousel/${itemToDelete}`, {
+      const res = await fetch(`${API_BASE_URL}/category/${itemToDelete}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
 
       if (!res.ok) throw new Error('Failed to delete');
 
-      toast.success('Slide deleted');
+      toast.success('Category deleted');
       fetchItems();
       setIsDeleteModalOpen(false);
     } catch (error) {
-      toast.error('Failed to delete slide');
+      toast.error('Failed to delete category');
     } finally {
       setIsDeleting(false);
       setItemToDelete(null);
@@ -244,9 +220,9 @@ export default function CarouselManagement() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
            <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-             Carousel Management
+             Category Management
            </h1>
-           <p className="text-gray-400 mt-1">Manage your homepage slider content</p>
+           <p className="text-gray-400 mt-1">Manage your product categories</p>
         </div>
         
         {userRole === 'admin' && (
@@ -254,12 +230,11 @@ export default function CarouselManagement() {
           onClick={() => handleOpenModal()}
           className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-xl transition-all shadow-lg hover:shadow-purple-500/25 active:scale-95 text-white font-medium"
         >
-          <MdAdd size={20} /> Add New Slide
+          <MdAdd size={20} /> Add New Category
         </button>
         )}
       </div>
 
-      {/* Table Section */}
       <div className="bg-[#0a0a0a] border border-white/5 rounded-3xl overflow-hidden backdrop-blur-xl shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -269,13 +244,10 @@ export default function CarouselManagement() {
                     <MdImage size={16} /> Image
                 </th>
                 <th className="px-6 py-5 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center gap-2"><MdTitle size={16} /> ID & Content</div>
+                    <div className="flex items-center gap-2"><MdTitle size={16} /> ID & Name</div>
                 </th>
                 <th className="px-6 py-5 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center gap-2"><MdSort size={16} /> Order</div>
-                </th>
-                 <th className="px-6 py-5 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    <div className="flex items-center gap-2"><MdLinkIcon size={16} /> Link</div>
+                    <div className="flex items-center gap-2"><MdDescription size={16} /> Description</div>
                 </th>
                 <th className="px-6 py-5 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
@@ -283,8 +255,8 @@ export default function CarouselManagement() {
             <tbody className="divide-y divide-white/5">
               {items.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
-                    No slides found. Add your first slide above.
+                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500">
+                    No categories found. Add your first category above.
                   </td>
                 </tr>
               ) : (
@@ -297,17 +269,15 @@ export default function CarouselManagement() {
                     className="hover:bg-white/[0.02] transition-colors group"
                   >
                     <td className="px-6 py-4">
-                      <div className="relative w-32 h-20 rounded-lg overflow-hidden border border-white/10 shadow-sm group-hover:shadow-md transition-all">
-                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                      <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-white/10 shadow-sm group-hover:shadow-md transition-all group-hover:border-purple-500/30">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                       </div>
                     </td>
                     <td className="px-6 py-4">
                         <div className="flex flex-col">
-                            <span className="text-xs font-mono text-purple-400 mb-1">{item.carouselId || '-'}</span>
-                            <span className="font-semibold text-white text-base group-hover:text-purple-300 transition-colors">{item.title || 'Untitled'}</span>
-                            <span className="text-sm text-gray-500">{item.subtitle}</span>
-                            <span className="text-xs text-gray-600 mt-1 line-clamp-1">{item.description}</span>
-                            <div className="mt-1">
+                            <span className="text-xs font-mono text-purple-400 mb-1">{item.categoryId}</span>
+                            <span className="font-semibold text-white text-base group-hover:text-purple-300 transition-colors">{item.name}</span>
+                            <div className="mt-2">
                                 <span className={`text-[10px] px-2 py-0.5 rounded-full border ${item.isActive ? 'bg-green-500/10 text-green-500 border-green-500/20' : 'bg-red-500/10 text-red-500 border-red-500/20'}`}>
                                     {item.isActive ? 'Active' : 'Inactive'}
                                 </span>
@@ -315,14 +285,7 @@ export default function CarouselManagement() {
                         </div>
                     </td>
                     <td className="px-6 py-4">
-                        <span className="px-3 py-1 bg-white/5 rounded-full text-xs font-mono text-gray-400 border border-white/5">
-                            #{item.order}
-                        </span>
-                    </td>
-                    <td className="px-6 py-4">
-                        <span className="text-sm text-blue-400 hover:underline cursor-pointer truncate max-w-[150px] block">
-                            {item.href || '-'}
-                        </span>
+                        <p className="text-sm text-gray-400 line-clamp-2 max-w-xs">{item.description || '-'}</p>
                     </td>
                     <td className="px-6 py-4 text-right">
                        <div className="flex items-center justify-end gap-2">
@@ -344,7 +307,7 @@ export default function CarouselManagement() {
                              <MdEdit size={18} />
                            </button>
                            <button 
-                             onClick={() => confirmDelete(item.carouselId)}
+                             onClick={() => confirmDelete(item.categoryId)}
                              className="p-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg transition-all duration-200"
                              title="Delete"
                            >
@@ -367,18 +330,16 @@ export default function CarouselManagement() {
          onClose={() => setIsDeleteModalOpen(false)}
          onConfirm={handleDelete}
          isLoading={isDeleting}
-         title="Delete Slide"
-         message="Are you sure you want to delete this slide? This action will permanently remove the slide and its image."
+         title="Delete Category"
+         message="Are you sure you want to delete this category? This action cannot be undone."
       />
 
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={`${editingItem ? 'Edit' : 'Add'} MakeOver Slide`}
+        title={`${editingItem ? 'Edit' : 'Add'} Category`}
       >
         <form onSubmit={handleSubmit} className="space-y-5 text-gray-300">
-            {/* Form Content (same as before) */}
-            {/* Image Upload Area */}
             <div className={`border-2 border-dashed rounded-xl p-4 flex flex-col items-center justify-center transition-colors cursor-pointer relative ${previewUrl ? 'border-purple-500/50 bg-purple-500/5' : 'border-white/20 hover:border-purple-500/50 hover:bg-white/5'}`}
                  onClick={() => fileInputRef.current?.click()}>
                  
@@ -391,10 +352,10 @@ export default function CarouselManagement() {
                  />
 
                  {previewUrl ? (
-                    <div className="relative w-full h-48 rounded-lg overflow-hidden">
+                    <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-purple-500/50">
                         <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                             <p className="text-white font-medium flex items-center gap-2"><MdEdit /> Change Image</p>
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity rounded-full">
+                             <MdEdit className="text-white" size={24} />
                         </div>
                     </div>
                  ) : (
@@ -402,71 +363,42 @@ export default function CarouselManagement() {
                         <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white mx-auto mb-3">
                             <MdCloudUpload size={24} />
                         </div>
-                        <p className="font-medium text-white">Click to upload slide image</p>
-                        <p className="text-xs text-gray-500 mt-1">SVG, PNG, JPG or GIF (max. 5MB)</p>
+                        <p className="font-medium text-white">Upload Icon</p>
                     </div>
                  )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-                <div className="col-span-2">
-                    <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Title</label>
-                    <input type="text" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} 
-                           className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
-                           placeholder="e.g. Summer Collection"
-                    />
-                </div>
-                
-                 <div className="col-span-2 md:col-span-1">
-                    <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Subtitle</label>
-                    <input type="text" value={formData.subtitle} onChange={e => setFormData({...formData, subtitle: e.target.value})} 
-                           className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
-                           placeholder="e.g. Up to 50% Off"
-                    />
-                </div>
+            <div>
+                <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Category Name</label>
+                <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} 
+                       className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
+                       placeholder="e.g. Electronics"
+                />
+            </div>
 
-                <div className="col-span-2 md:col-span-1">
-                     <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Sort Order</label>
-                     <input type="number" value={formData.order} onChange={e => setFormData({...formData, order: parseInt(e.target.value)})} 
-                            className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
-                     />
-                </div>
-
-                <div className="col-span-2 md:col-span-2 flex items-center justify-start mt-2">
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                        <div className="relative">
-                            <input 
-                                type="checkbox" 
-                                checked={formData.isActive} 
-                                onChange={e => setFormData({...formData, isActive: e.target.checked})} 
-                                className="sr-only peer"
-                            />
-                            <div className="w-11 h-6 bg-gray-700 rounded-full peer peer-focus:ring-2 peer-focus:ring-purple-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
-                        </div>
-                        <span className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
-                            {formData.isActive ? 'Active' : 'Inactive'}
-                        </span>
-                    </label>
-                </div>
+            <div className="flex items-center justify-start mt-2">
+                <label className="flex items-center gap-3 cursor-pointer group">
+                    <div className="relative">
+                        <input 
+                            type="checkbox" 
+                            checked={formData.isActive} 
+                            onChange={e => setFormData({...formData, isActive: e.target.checked})} 
+                            className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-gray-700 rounded-full peer peer-focus:ring-2 peer-focus:ring-purple-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                    </div>
+                    <span className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
+                        {formData.isActive ? 'Active' : 'Inactive'}
+                    </span>
+                </label>
             </div>
             
             <div>
                 <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Description</label>
                 <textarea value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} 
                           className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl px-4 py-3 outline-none transition-colors text-white placeholder-gray-600 min-h-[100px]" 
-                          placeholder="Brief description for the slide..."
+                          placeholder="Brief description..."
                 />
-            </div>
-
-            <div>
-                <label className="block text-xs font-semibold uppercase text-gray-500 mb-1.5 ml-1">Link URL</label>
-                <div className="relative">
-                    <input type="text" value={formData.href} onChange={e => setFormData({...formData, href: e.target.value})} 
-                           className="w-full bg-[#1a1a1a] border border-white/10 focus:border-purple-500 rounded-xl pl-10 pr-4 py-3 outline-none transition-colors text-white placeholder-gray-600" 
-                           placeholder="/collections/summer"
-                    />
-                    <MdLinkIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
-                </div>
             </div>
 
             <button 
@@ -486,7 +418,7 @@ export default function CarouselManagement() {
                 ) : (
                     <>
                         {editingItem ? <MdEdit size={20} /> : <MdAdd size={20} />}
-                        <span>{editingItem ? 'Update Slide' : 'Create Slide'}</span>
+                        <span>{editingItem ? 'Update Category' : 'Create Category'}</span>
                     </>
                 )}
             </button>
@@ -496,49 +428,36 @@ export default function CarouselManagement() {
       <Modal
         isOpen={isDetailsModalOpen}
         onClose={() => setIsDetailsModalOpen(false)}
-        title="Slide Details"
+        title="Category Details"
       >
         {detailsItem && (
             <div className="space-y-6 text-gray-300">
-                <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg border border-white/10">
-                    <img src={detailsItem.image} alt={detailsItem.title} className="w-full h-full object-cover" />
-                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                        <span className={`text-xs font-semibold ${detailsItem.isActive ? 'text-green-400' : 'text-red-400'}`}>
-                            {detailsItem.isActive ? 'Active' : 'Inactive'}
-                        </span>
+                <div className="flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10">
+                    <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-purple-500/30 shadow-xl mb-4">
+                        <img src={detailsItem.image} alt={detailsItem.name} className="w-full h-full object-cover" />
                     </div>
+                    <h2 className="text-2xl font-bold text-white mb-2">{detailsItem.name}</h2>
+                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${detailsItem.isActive ? 'bg-green-500/10 text-green-500 border-green-500/20' : 'bg-red-500/10 text-red-500 border-red-500/20'}`}>
+                        {detailsItem.isActive ? 'Active' : 'Inactive'}
+                    </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6">
-                    <div className="col-span-2">
-                         <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Title & Subtitle</h4>
-                         <p className="text-xl font-bold text-white mb-1">{detailsItem.title || 'No Title'}</p>
-                         <p className="text-lg text-purple-400 italic">{detailsItem.subtitle || 'No Subtitle'}</p>
+                <div className="grid grid-cols-1 gap-4">
+                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <MdNumbers /> Category ID
+                        </h4>
+                        <p className="font-mono text-white text-lg">{detailsItem.categoryId}</p>
                     </div>
 
-                    <div className="col-span-2 p-4 bg-white/5 rounded-xl border border-white/10">
+                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                         <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <MdTitle /> Description
+                            <MdDescription /> Description
                         </h4>
                         <p className="text-gray-300 leading-relaxed">{detailsItem.description || 'No description provided.'}</p>
                     </div>
 
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                         <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <MdLinkIcon /> Link URL
-                         </h4>
-                         <p className="text-blue-400 truncate hover:underline cursor-pointer">{detailsItem.href || '-'}</p>
-                    </div>
-
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                         <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-2">
-                            <MdSort /> Order
-                         </h4>
-                         <span className="text-2xl font-mono text-white">#{detailsItem.order}</span>
-                    </div>
-
-                    <div className="col-span-2 flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-white/10">
-                         <span>ID: <span className="font-mono text-gray-400">{detailsItem.carouselId}</span></span>
+                    <div className="flex items-center justify-between text-xs text-gray-500 pt-2 px-2">
                          <span className="flex items-center gap-2">
                             <MdDateRange /> Created: {new Date().toLocaleDateString()} 
                          </span>

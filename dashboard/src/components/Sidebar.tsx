@@ -12,7 +12,8 @@ import {
   MdLogout,
   MdMenu,
   MdClose,
-  MdViewCarousel
+  MdViewCarousel,
+  MdCategory
 } from 'react-icons/md';
 
 const Sidebar = () => {
@@ -37,7 +38,8 @@ const Sidebar = () => {
     { name: 'Overview', href: '/dashboard', icon: MdDashboard },
     ...(userRole === 'admin' ? [
       { name: 'Users', href: '/dashboard/users', icon: MdPeople },
-      { name: 'Carousel', href: '/dashboard/carousel', icon: MdViewCarousel }
+      { name: 'Carousel', href: '/dashboard/carousel', icon: MdViewCarousel },
+      { name: 'Categories', href: '/dashboard/category', icon: MdCategory }
     ] : []),
   ];
 

@@ -35,8 +35,11 @@ app.use(express.json());
 
 
 
+import categoryRoutes from './routes/categoryRoutes';
+
 app.use('/api/auth', authRoutes);
 app.use('/api/carousel', carouselRoutes);
+app.use('/api/category', categoryRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
