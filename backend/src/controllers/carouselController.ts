@@ -16,7 +16,7 @@ export const getCarouselItems = async (req: Request, res: Response) => {
 
 export const addCarouselItem = async (req: Request, res: Response) => {
   try {
-    const { title, subtitle, description, href, order } = req.body;
+    const { title, subtitle, description, href, order, isActive } = req.body;
 
     // 1. Validation Logic FIRST (as requested)
     // Manually check if required fields are present (if any)
@@ -43,6 +43,7 @@ export const addCarouselItem = async (req: Request, res: Response) => {
       description,
       href,
       order: order || 0,
+      isActive: isActive === 'true' || isActive === true, // Handle string from FormData or boolean
     });
 
     const savedItem = await newItem.save();
@@ -55,7 +56,7 @@ export const addCarouselItem = async (req: Request, res: Response) => {
 export const updateCarouselItem = async (req: Request, res: Response) => {
   try {
     const { id } = req.params; // This receives carouselId (e.g., CAR-00001)
-    const { title, subtitle, description, href, order } = req.body;
+    const { title, subtitle, description, href, order, isActive } = req.body;
     
     // Find existing item by carouselId
     const existingItem = await Carousel.findOne({ carouselId: id });
@@ -87,6 +88,7 @@ export const updateCarouselItem = async (req: Request, res: Response) => {
     existingItem.description = description;
     existingItem.href = href;
     if (order) existingItem.order = order;
+    if (isActive !== undefined) existingItem.isActive = isActive === 'true' || isActive === true;
     
     const updatedItem = await existingItem.save();
 

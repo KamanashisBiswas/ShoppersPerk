@@ -31,7 +31,8 @@ export default function Carousel() {
           try {
               const res = await api.get('/carousel');
               if (Array.isArray(res.data)) {
-                  setSlides(res.data);
+                  const activeSlides = res.data.filter((slide: any) => slide.isActive !== false);
+                  setSlides(activeSlides);
               }
           } catch (error) {
               console.error("Failed to fetch carousel data:", error);
