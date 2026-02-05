@@ -13,7 +13,8 @@ import {
   MdMenu,
   MdClose,
   MdViewCarousel,
-  MdCategory
+  MdCategory,
+  MdSubdirectoryArrowRight
 } from 'react-icons/md';
 
 const Sidebar = () => {
@@ -39,7 +40,8 @@ const Sidebar = () => {
     ...(userRole === 'admin' ? [
       { name: 'Users', href: '/dashboard/users', icon: MdPeople },
       { name: 'Carousel', href: '/dashboard/carousel', icon: MdViewCarousel },
-      { name: 'Categories', href: '/dashboard/category', icon: MdCategory }
+      { name: 'Categories', href: '/dashboard/category', icon: MdCategory },
+      { name: 'Sub Categories', href: '/dashboard/sub-category', icon: MdSubdirectoryArrowRight }
     ] : []),
   ];
 
