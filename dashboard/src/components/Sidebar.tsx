@@ -14,7 +14,8 @@ import {
   MdClose,
   MdViewCarousel,
   MdCategory,
-  MdSubdirectoryArrowRight
+  MdSubdirectoryArrowRight,
+  MdBrandingWatermark
 } from 'react-icons/md';
 
 const Sidebar = () => {
@@ -41,7 +42,8 @@ const Sidebar = () => {
       { name: 'Users', href: '/dashboard/users', icon: MdPeople },
       { name: 'Carousel', href: '/dashboard/carousel', icon: MdViewCarousel },
       { name: 'Categories', href: '/dashboard/category', icon: MdCategory },
-      { name: 'Sub Categories', href: '/dashboard/sub-category', icon: MdSubdirectoryArrowRight }
+      { name: 'Sub Categories', href: '/dashboard/sub-category', icon: MdSubdirectoryArrowRight },
+      { name: 'Brands', href: '/dashboard/brand', icon: MdBrandingWatermark }
     ] : []),
   ];
 
