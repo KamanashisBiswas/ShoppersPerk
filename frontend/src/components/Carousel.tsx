@@ -7,13 +7,12 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialMedia from "./SocialMedia";
 import Navbar from "./Navbar";
-import carouselData from "@/data/data.json";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
-
-const API_BASE_URL = 'http://localhost:5000/api';
+import api from "@/utils/api";
 
 interface CarouselSlide {
-    _id?: string;
+    _id: string;
+    carouselId?: string; // Optional custom ID from backend
     image: string;
     title: string;
     subtitle: string;
@@ -24,16 +23,15 @@ interface CarouselSlide {
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [slides, setSlides] = useState<CarouselSlide[]>(carouselData.carouselSlides);
+  const [slides, setSlides] = useState<CarouselSlide[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
       const fetchData = async () => {
           try {
-              const res = await fetch(`${API_BASE_URL}/carousel`);
-              const data = await res.json();
-              if (Array.isArray(data) && data.length > 0) {
-                  setSlides(data);
+              const res = await api.get('/carousel');
+              if (Array.isArray(res.data)) {
+                  setSlides(res.data);
               }
           } catch (error) {
               console.error("Failed to fetch carousel data:", error);
@@ -52,13 +50,26 @@ export default function Carousel() {
   }, [slides.length]);
 
   useEffect(() => {
+    if (slides.length === 0) return; // Don't set interval if no slides
     const interval = setInterval(() => {
       nextSlide();
     }, 5000);
     return () => clearInterval(interval);
-  }, [nextSlide]);
+  }, [nextSlide, slides.length]);
 
   const currentData = slides.length > 0 ? slides[currentSlide] : null;
+
+  if (loading) {
+      return (
+          <div className="w-full h-[600px] lg:h-[750px] bg-gray-900 flex items-center justify-center">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
+          </div>
+      );
+  }
+
+  if (!currentData) {
+      return null; // Or return a default empty state
+  }
 
   return (
     <div className="relative w-full h-[600px] lg:h-[750px] overflow-hidden bg-gray-900">
