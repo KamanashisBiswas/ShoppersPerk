@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { API_BASE_URL } from '@/utils/apiConfig';
 import toast from 'react-hot-toast';
-import { MdAdd, MdEdit, MdDelete, MdCloudUpload, MdImage, MdTitle, MdVisibility, MdDateRange, MdDescription, MdNumbers, MdClose } from 'react-icons/md';
+import { MdAdd, MdEdit, MdDelete, MdCloudUpload, MdImage, MdTitle, MdVisibility, MdDateRange, MdDescription, MdNumbers, MdClose, MdPeople } from 'react-icons/md';
 import Modal from '@/components/ui/Modal';
 import { motion } from 'framer-motion';
 import ConfirmModal from '@/components/ui/ConfirmModal';
@@ -15,6 +15,9 @@ interface CategoryItem {
   name: string;
   description?: string;
   isActive: boolean;
+  createdBy?: {
+      name: string;
+  };
 }
 
 export default function CategoryManagement() {
@@ -461,6 +464,11 @@ export default function CategoryManagement() {
                          <span className="flex items-center gap-2">
                             <MdDateRange /> Created: {new Date().toLocaleDateString()} 
                          </span>
+                         {detailsItem.createdBy && (
+                            <span className="flex items-center gap-2">
+                                <MdPeople /> Created By: <span className="text-purple-400 font-medium">{detailsItem.createdBy.name}</span>
+                            </span>
+                         )}
                     </div>
                 </div>
             </div>

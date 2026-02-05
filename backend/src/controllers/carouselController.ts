@@ -7,7 +7,7 @@ import { uploadImageToCloudinary, deleteImageFromCloudinary } from '../utils/clo
 
 export const getCarouselItems = async (req: Request, res: Response) => {
   try {
-    const items = await Carousel.find().sort({ order: 1 });
+    const items = await Carousel.find().populate('createdBy', 'name').sort({ order: 1 });
     res.json(items);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching carousel items', error });
@@ -43,7 +43,8 @@ export const addCarouselItem = async (req: Request, res: Response) => {
       description,
       href,
       order: order || 0,
-      isActive: isActive === 'true' || isActive === true, // Handle string from FormData or boolean
+      isActive: isActive === 'true' || isActive === true,
+      createdBy: req.user?._id,
     });
 
     const savedItem = await newItem.save();

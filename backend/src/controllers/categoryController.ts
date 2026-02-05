@@ -9,7 +9,7 @@ export const getCategories = async (req: Request, res: Response) => {
     // For now, let's return all, and frontend filters like Carousel, 
     // OR we can implement query param filtering.
     // Let's stick to returning all and letting frontend/dashboard handle visibility for consistency with Carousel implementation.
-    const items = await Category.find().sort({ createdAt: -1 });
+    const items = await Category.find().populate('createdBy', 'name').sort({ createdAt: -1 });
     res.json(items);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching categories', error });
@@ -38,6 +38,7 @@ export const addCategory = async (req: Request, res: Response) => {
       name,
       description,
       isActive: isActive === 'true' || isActive === true,
+      createdBy: req.user?._id,
     });
 
     const savedItem = await newItem.save();

@@ -17,6 +17,7 @@ const SubCategorySchema: Schema = new Schema({
   description: { type: String },
   image: { type: String, required: true },
   isActive: { type: Boolean, default: true },
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
 
 SubCategorySchema.pre('save', async function () {

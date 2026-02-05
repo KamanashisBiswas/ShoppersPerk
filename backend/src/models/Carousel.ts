@@ -23,6 +23,7 @@ const CarouselSchema: Schema = new Schema({
   href: { type: String },
   order: { type: Number, default: 0 },
   isActive: { type: Boolean, default: true },
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
 
 CarouselSchema.pre('save', async function () {

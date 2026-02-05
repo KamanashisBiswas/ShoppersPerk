@@ -7,6 +7,7 @@ export const getSubCategories = async (req: Request, res: Response) => {
   try {
     const items = await SubCategory.find()
       .populate('parentCategory', 'name categoryId')
+      .populate('createdBy', 'name')
       .sort({ createdAt: -1 });
     res.json(items);
   } catch (error) {
@@ -43,6 +44,7 @@ export const addSubCategory = async (req: Request, res: Response) => {
       parentCategory,
       description,
       isActive: isActive === 'true' || isActive === true,
+      createdBy: req.user?._id,
     });
 
     const savedItem = await newItem.save();

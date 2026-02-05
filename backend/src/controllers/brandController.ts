@@ -4,7 +4,7 @@ import { uploadImageToCloudinary, deleteImageFromCloudinary } from '../utils/clo
 
 export const getBrands = async (req: Request, res: Response) => {
   try {
-    const items = await Brand.find().sort({ createdAt: -1 });
+    const items = await Brand.find().populate('createdBy', 'name').sort({ createdAt: -1 });
     res.json(items);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching brands', error });
@@ -33,6 +33,7 @@ export const addBrand = async (req: Request, res: Response) => {
       name,
       description,
       isActive: isActive === 'true' || isActive === true,
+      createdBy: req.user?._id,
     });
 
     const savedItem = await newItem.save();
