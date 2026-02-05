@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { API_BASE_URL } from '@/utils/apiConfig';
 import toast from 'react-hot-toast';
-import { MdAdd, MdEdit, MdDelete, MdLink, MdCloudUpload, MdClose, MdImage, MdTitle, MdSort, MdVisibility, MdLink as MdLinkIcon, MdDateRange, MdToggleOn, MdPeople } from 'react-icons/md';
+import { MdAdd, MdEdit, MdDelete, MdLink, MdCloudUpload, MdClose, MdImage, MdTitle, MdSort, MdVisibility, MdLink as MdLinkIcon, MdDateRange, MdToggleOn, MdPeople, MdRefresh } from 'react-icons/md';
 import Modal from '@/components/ui/Modal';
+import { Button } from '@/components/ui/Button';
 import { motion } from 'framer-motion';
 import ConfirmModal from '@/components/ui/ConfirmModal';
 
@@ -253,14 +254,25 @@ export default function CarouselManagement() {
            <p className="text-gray-400 mt-1">Manage your homepage slider content</p>
         </div>
         
-        {userRole === 'admin' && (
-        <button
-          onClick={() => handleOpenModal()}
-          className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-xl transition-all shadow-lg hover:shadow-purple-500/25 active:scale-95 text-white font-medium"
-        >
-          <MdAdd size={20} /> Add New Slide
-        </button>
-        )}
+
+        
+        <div className="flex items-center gap-3">
+            <Button 
+                className='cursor-pointer shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all duration-300' 
+                onClick={() => { fetchItems(); toast.success('Carousel list refreshed'); }}
+            >
+                Refresh List
+            </Button>
+
+            {userRole === 'admin' && (
+            <button
+              onClick={() => handleOpenModal()}
+              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-xl transition-all shadow-lg hover:shadow-purple-500/25 active:scale-95 text-white font-medium"
+            >
+              <MdAdd size={20} /> Add New Slide
+            </button>
+            )}
+        </div>
       </div>
 
       {/* Table Section */}

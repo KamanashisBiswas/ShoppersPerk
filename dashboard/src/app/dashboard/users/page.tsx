@@ -29,7 +29,7 @@ const UsersPage = () => {
     fetchUsers();
   }, []);
 
-  const fetchUsers = async () => {
+  const fetchUsers = async (showToast = false) => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
@@ -43,7 +43,9 @@ const UsersPage = () => {
       
       if (response.ok) {
         setUsers(data);
-        toast.success('User list updated');
+        if (showToast) {
+            toast.success('User list updated');
+        }
       } else {
         // Show specific error from backend (e.g., "Not authorized as an admin")
         toast.error(data.message || 'Failed to fetch users');
@@ -76,7 +78,7 @@ const UsersPage = () => {
         </div>
         <Button 
             className='cursor-pointer shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all duration-300' 
-            onClick={fetchUsers}
+            onClick={() => fetchUsers(true)}
         >
             Refresh List
         </Button>
