@@ -570,6 +570,137 @@
       { "name": "United Kingdom", "image": "/images/countryImg/uk.png" }
     ],
     "copyright": "Copyright - Shoppers park | Designed by PerkTech Solutions"
+  },
+  "categoryProducts": {
+    "skincare": [
+      { "id": 1001, "name": "Skin Care For Women", "variant": "Silver", "price": 3000, "discount": "-50%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 1002, "name": "Vitamin C Serum", "variant": "Glow Boost", "price": 2500, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 1003, "name": "Hydra Face Wash", "variant": "Deep Clean", "price": 1200, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 1004, "name": "Rose Glow Toner", "variant": "Petal Soft", "price": 1800, "discount": "-40%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 1005, "name": "SPF 50 Sunscreen", "variant": "Daily Shield", "price": 1500, "discount": "-25%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 1006, "name": "Night Repair Cream", "variant": "Nourish Plus", "price": 3500, "discount": "-35%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 1007, "name": "Collagen Moisturizer", "variant": "Firm & Fresh", "price": 2800, "discount": "-45%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 1008, "name": "Eye Cream Gold", "variant": "Anti Dark", "price": 2200, "discount": "-30%", "rating": 4, "image": "/images/products/product1.jpg" }
+    ],
+    "makeup": [
+      { "id": 2001, "name": "Matte Foundation", "variant": "Ivory Glow", "price": 2200, "discount": "-40%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 2002, "name": "Velvet Lipstick", "variant": "Rose Red", "price": 900, "discount": "-20%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 2003, "name": "Glitter Eye Shadow", "variant": "Galaxy Night", "price": 1400, "discount": "-35%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 2004, "name": "Rosy Blush Palette", "variant": "Peach Bloom", "price": 1600, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 2005, "name": "Setting Powder", "variant": "Translucent", "price": 1100, "discount": "-25%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 2006, "name": "Concealer Stick", "variant": "Porcelain", "price": 800, "discount": "-15%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 2007, "name": "Volume Mascara", "variant": "Jet Black", "price": 1200, "discount": "-50%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 2008, "name": "Brow Definer Pen", "variant": "Ash Brown", "price": 700, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" }
+    ],
+    "haircare": [
+      { "id": 3001, "name": "Argan Oil Shampoo", "variant": "Silk Smooth", "price": 1400, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 3002, "name": "Deep Conditioner", "variant": "Moisture Lock", "price": 1600, "discount": "-35%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 3003, "name": "Coconut Hair Oil", "variant": "Pure Nourish", "price": 900, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 3004, "name": "Keratin Hair Mask", "variant": "Bond Repair", "price": 2200, "discount": "-40%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 3005, "name": "Anti-Frizz Serum", "variant": "Smooth Touch", "price": 1800, "discount": "-25%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 3006, "name": "Scalp Revive Tonic", "variant": "Fresh Mint", "price": 1200, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 3007, "name": "Heat Protect Spray", "variant": "Style Guard", "price": 1500, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 3008, "name": "Biotin Shampoo", "variant": "Volume Up", "price": 1300, "discount": "-15%", "rating": 5, "image": "/images/products/product1.jpg" }
+    ],
+    "fragrance": [
+      { "id": 4001, "name": "Rose Blush Perfume", "variant": "EDP 50ml", "price": 4500, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 4002, "name": "Oud Noir Cologne", "variant": "EDP 100ml", "price": 5500, "discount": "-25%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 4003, "name": "Floral Body Mist", "variant": "Fresh Bloom", "price": 1200, "discount": "-40%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 4004, "name": "Vanilla Dream Mist", "variant": "Soft Luxe", "price": 1400, "discount": "-35%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 4005, "name": "Citrus Burst Deo", "variant": "48H Fresh", "price": 800, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 4006, "name": "Jasmine Pearl EDP", "variant": "EDP 75ml", "price": 3800, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 4007, "name": "Amber Glow EDP", "variant": "EDP 50ml", "price": 3200, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 4008, "name": "Aqua Fresh Cologne", "variant": "EDT 100ml", "price": 2800, "discount": "-15%", "rating": 4, "image": "/images/products/product1.jpg" }
+    ],
+    "wedding": [
+      { "id": 5001, "name": "Bridal Glow Kit", "variant": "Complete Set", "price": 8500, "discount": "-40%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 5002, "name": "Bridal Foundation", "variant": "Flawless Finish", "price": 3200, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 5003, "name": "Bridal Blush Rose", "variant": "Petal Pink", "price": 2000, "discount": "-35%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 5004, "name": "Long Wear Lipstick", "variant": "Bridal Red", "price": 1500, "discount": "-25%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 5005, "name": "Setting Spray HD", "variant": "All Day Lock", "price": 1800, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 5006, "name": "Bridal Eye Palette", "variant": "Gold & Rose", "price": 2500, "discount": "-45%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 5007, "name": "Skin Prep Serum", "variant": "Pre-Bridal", "price": 3500, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 5008, "name": "Bridal Perfume", "variant": "Eternal Rose", "price": 5000, "discount": "-20%", "rating": 5, "image": "/images/products/product1.jpg" }
+    ],
+    "festival": [
+      { "id": 6001, "name": "Glitter Face Gel", "variant": "Holographic", "price": 1200, "discount": "-50%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 6002, "name": "Neon Lip Color", "variant": "Electric Pink", "price": 900, "discount": "-40%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 6003, "name": "Bold Eye Shadow", "variant": "Festival Mix", "price": 1400, "discount": "-35%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 6004, "name": "Body Shimmer Lotion", "variant": "Gold Dust", "price": 1600, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 6005, "name": "Colorful Bindi Set", "variant": "Party Pack", "price": 500, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 6006, "name": "Vibrant Kajal", "variant": "Intense Black", "price": 700, "discount": "-25%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 6007, "name": "Face Sparkle Spray", "variant": "Star Dust", "price": 1100, "discount": "-45%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 6008, "name": "Festival Gift Set", "variant": "Limited Edition", "price": 3200, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" }
+    ],
+    "birthday": [
+      { "id": 7001, "name": "Birthday Gift Set", "variant": "Deluxe Pack", "price": 4500, "discount": "-40%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 7002, "name": "Party Glam Palette", "variant": "Celebration", "price": 2200, "discount": "-35%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 7003, "name": "Birthday Perfume", "variant": "Sweet Cake", "price": 3000, "discount": "-25%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 7004, "name": "Shimmer Lip Gloss", "variant": "Bubblegum", "price": 800, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 7005, "name": "Pink Blush Duo", "variant": "Rosy Cheeks", "price": 1500, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 7006, "name": "Glitter Eye Set", "variant": "Princess Pack", "price": 1800, "discount": "-45%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 7007, "name": "Birthday Skin Kit", "variant": "Glow & Go", "price": 3500, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 7008, "name": "Mini Fav Set", "variant": "Best Picks", "price": 2500, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" }
+    ],
+    "baby": [
+      { "id": 8001, "name": "Gentle Baby Wash", "variant": "No Tears", "price": 800, "discount": "-20%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 8002, "name": "Soft Baby Lotion", "variant": "Pure Cotton", "price": 900, "discount": "-25%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 8003, "name": "Baby Hair Oil", "variant": "Almond Milk", "price": 700, "discount": "-15%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 8004, "name": "Baby Powder", "variant": "Talc Free", "price": 600, "discount": "-10%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 8005, "name": "Baby Wipes Pack", "variant": "Sensitive", "price": 500, "discount": "-30%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 8006, "name": "Baby Shampoo", "variant": "Gentle Care", "price": 750, "discount": "-20%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 8007, "name": "Nappy Rash Cream", "variant": "Soothing", "price": 650, "discount": "-15%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 8008, "name": "Baby Sunscreen", "variant": "SPF 30", "price": 1200, "discount": "-25%", "rating": 4, "image": "/images/products/product1.jpg" }
+    ],
+    "men": [
+      { "id": 9001, "name": "Men Face Wash", "variant": "Charcoal Clean", "price": 1200, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 9002, "name": "Shaving Gel", "variant": "Smooth Glide", "price": 900, "discount": "-25%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 9003, "name": "Sport Deodorant", "variant": "48H Power", "price": 800, "discount": "-20%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 9004, "name": "Men Moisturizer", "variant": "Oil Free", "price": 1800, "discount": "-35%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 9005, "name": "Beard Growth Oil", "variant": "Castor Blend", "price": 2200, "discount": "-40%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 9006, "name": "After Shave Balm", "variant": "Cool Mint", "price": 1100, "discount": "-20%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 9007, "name": "Men Perfume", "variant": "Dark Oud", "price": 4500, "discount": "-30%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 9008, "name": "Men Hair Wax", "variant": "Strong Hold", "price": 950, "discount": "-15%", "rating": 4, "image": "/images/products/product1.jpg" }
+    ],
+    "clearance": [
+      { "id": 10001, "name": "Skin Care Bundle", "variant": "Clearance Deal", "price": 1500, "discount": "-70%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 10002, "name": "Makeup Mega Set", "variant": "Final Sale", "price": 2000, "discount": "-65%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 10003, "name": "Perfume Duo Pack", "variant": "Last Chance", "price": 3000, "discount": "-60%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 10004, "name": "Hair Care Bundle", "variant": "Clearance", "price": 1200, "discount": "-55%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 10005, "name": "Beauty Starter Kit", "variant": "Value Pack", "price": 1800, "discount": "-70%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 10006, "name": "Lip Color Set", "variant": "6 Shades", "price": 800, "discount": "-60%", "rating": 4, "image": "/images/products/product1.jpg" },
+      { "id": 10007, "name": "Eye Shadow Vault", "variant": "20 Shades", "price": 2500, "discount": "-65%", "rating": 5, "image": "/images/products/product1.jpg" },
+      { "id": 10008, "name": "Fragrance Gift Set", "variant": "Clearance", "price": 3500, "discount": "-50%", "rating": 4, "image": "/images/products/product1.jpg" }
+    ]
+  },
+  "sidebarFilterOptions": {
+    "ratingCounts": [
+      { "value": 5, "count": 500 },
+      { "value": 4, "count": 200 },
+      { "value": 3, "count": 175 },
+      { "value": 2, "count": 100 },
+      { "value": 1, "count": 0 }
+    ],
+    "brands": [
+      { "id": "medicube", "name": "Medicube", "count": 500 },
+      { "id": "cle-de-peau", "name": "CLE DE PEAU", "count": 500 },
+      { "id": "the-ordinary", "name": "The Ordinary", "count": 500 },
+      { "id": "laneige", "name": "Laneige", "count": 500 },
+      { "id": "innisfree", "name": "Innisfree", "count": 500 }
+    ],
+    "skinConcerns": [
+      { "id": "oily", "name": "Oily", "count": 500 },
+      { "id": "dry", "name": "Dry Skin", "count": 500 },
+      { "id": "combination", "name": "Combination", "count": 500 },
+      { "id": "sensitive", "name": "Sensitive", "count": 500 }
+    ],
+    "colors": [
+      { "id": "gold", "name": "Gold", "count": 500 },
+      { "id": "pink", "name": "Pink", "count": 500 },
+      { "id": "white", "name": "White", "count": 500 },
+      { "id": "rose-gold", "name": "Rose Gold", "count": 500 },
+      { "id": "nude", "name": "Nude", "count": 500 }
+    ]
   }
 }
  
