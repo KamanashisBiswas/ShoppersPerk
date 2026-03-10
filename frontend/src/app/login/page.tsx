@@ -65,8 +65,13 @@ function Background() {
         className="absolute -top-40 -left-40 w-120 h-120 rounded-full bg-white/20 blur-3xl"
       />
       <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.10, 0.22, 0.10] }}
-        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        animate={{ scale: [1, 1.15, 1], opacity: [0.1, 0.22, 0.1] }}
+        transition={{
+          duration: 13,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
+        }}
         className="absolute -bottom-32 -right-32 w-md h-112 rounded-full bg-white/15 blur-3xl"
       />
 
@@ -129,7 +134,10 @@ function Background() {
         <motion.div
           className="absolute bottom-0 left-0 h-full"
           style={{ width: "200%" }}
-          animate={{ x: ["0%", "-50%"], transition: { duration: 14, repeat: Infinity, ease: "linear" } }}
+          animate={{
+            x: ["0%", "-50%"],
+            transition: { duration: 14, repeat: Infinity, ease: "linear" },
+          }}
         >
           <svg
             viewBox="0 0 2880 100"
@@ -153,16 +161,25 @@ function Background() {
           className="absolute text-2xl select-none pointer-events-none"
           style={
             [
-              { top: "8%",  left: "6%"  },
+              { top: "8%", left: "6%" },
               { top: "15%", right: "8%" },
-              { top: "72%", left: "4%"  },
+              { top: "72%", left: "4%" },
               { top: "80%", right: "6%" },
-              { top: "40%", left: "2%"  },
+              { top: "40%", left: "2%" },
               { top: "55%", right: "3%" },
             ][i]
           }
-          animate={{ y: [0, -12, 0], rotate: [0, 8, 0], opacity: [0.45, 0.85, 0.45] }}
-          transition={{ duration: 4 + i * 0.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
+          animate={{
+            y: [0, -12, 0],
+            rotate: [0, 8, 0],
+            opacity: [0.45, 0.85, 0.45],
+          }}
+          transition={{
+            duration: 4 + i * 0.6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.4,
+          }}
         >
           {e}
         </motion.span>
@@ -170,7 +187,6 @@ function Background() {
     </>
   );
 }
-
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function LoginPage() {
