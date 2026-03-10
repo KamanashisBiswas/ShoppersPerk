@@ -38,12 +38,14 @@ app.use(express.json());
 import categoryRoutes from './routes/categoryRoutes';
 import subCategoryRoutes from './routes/subCategoryRoutes';
 import brandRoutes from './routes/brandRoutes';
+import productRoutes from './routes/productRoutes';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/carousel', carouselRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/sub-category', subCategoryRoutes);
 app.use('/api/brand', brandRoutes);
+app.use('/api/product', productRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');

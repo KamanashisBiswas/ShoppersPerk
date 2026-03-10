@@ -7,9 +7,10 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children: React.ReactNode;
+  maxWidth?: string;
 }
 
-export default function Modal({ isOpen, onClose, title, children }: ModalProps) {
+export default function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-lg' }: ModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -19,7 +20,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
            initial={{ opacity: 0, scale: 0.9, y: 20 }}
            animate={{ opacity: 1, scale: 1, y: 0 }}
            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-           className="relative w-full max-w-lg bg-[#0a0a0a] border border-white/5 rounded-[2rem] shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
+           className={`relative w-full ${maxWidth} bg-[#0a0a0a] border border-white/5 rounded-[2rem] shadow-2xl overflow-hidden flex flex-col max-h-[85vh]`}
         >
           {/* Header Section with Contained Background */}
           <div className="relative shrink-0">

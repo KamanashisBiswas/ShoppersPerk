@@ -40,6 +40,7 @@ const Sidebar = () => {
     { name: 'Overview', href: '/dashboard', icon: MdDashboard },
     ...(userRole === 'admin' ? [
       { name: 'Users', href: '/dashboard/users', icon: MdPeople },
+      { name: 'Products', href: '/dashboard/products', icon: MdShoppingBag },
       { name: 'Carousel', href: '/dashboard/carousel', icon: MdViewCarousel },
       { name: 'Categories', href: '/dashboard/category', icon: MdCategory },
       { name: 'Sub Categories', href: '/dashboard/sub-category', icon: MdSubdirectoryArrowRight },
