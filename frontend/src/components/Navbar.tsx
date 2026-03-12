@@ -53,9 +53,12 @@ export default function Navbar({ onMenuToggle }: NavbarProps) {
 
       {/* Mobile Top Bar (Hamburger Trigger + Icons) */}
       <div className="lg:hidden fixed top-12 right-4 z-9999 flex items-center gap-3">
-        <button className="w-10 h-10 rounded-full bg-[#a91d5b] flex items-center justify-center text-white hover:bg-pink-700 transition-colors shadow-lg">
+        <Link
+          href="/login"
+          className="w-10 h-10 rounded-full bg-[#a91d5b] flex items-center justify-center text-white hover:bg-pink-700 transition-colors shadow-lg"
+        >
           <FaUser size={18} />
-        </button>
+        </Link>
         <button className="w-10 h-10 rounded-full bg-[#a91d5b] flex items-center justify-center text-white hover:bg-pink-700 transition-colors shadow-lg">
           <FaShoppingCart size={18} />
         </button>

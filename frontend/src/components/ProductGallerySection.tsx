@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { IoSearch } from "react-icons/io5";
 import {
   FaSearch,
@@ -459,9 +460,12 @@ export default function ProductGallerySection({
                   <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-pink-500" />
                 </div>
                 <div className="hidden lg:flex items-center gap-3">
-                  <button className="w-10 h-10 rounded-full bg-[#a91d5b] flex items-center justify-center text-white hover:bg-pink-700 transition-colors shadow-sm">
+                  <Link
+                    href="/login"
+                    className="w-10 h-10 rounded-full bg-[#a91d5b] flex items-center justify-center text-white hover:bg-pink-700 transition-colors shadow-sm"
+                  >
                     <FaUser />
-                  </button>
+                  </Link>
                   <button className="w-10 h-10 rounded-full bg-[#a91d5b] flex items-center justify-center text-white hover:bg-pink-700 transition-colors shadow-sm">
                     <FaShoppingCart />
                   </button>

@@ -322,7 +322,31 @@ export default function LoginPage() {
         {/* Pink accent bar at top */}
         <div className="h-1.5 w-full bg-linear-to-r from-[#AC1754] via-pink-400 to-fuchsia-400" />
 
-        <div className="px-8 pt-8 pb-9">
+        {/* Back button */}
+        <div className="px-6 pt-5">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-[#AC1754] hover:text-pink-700 text-sm font-medium transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Back
+          </Link>
+        </div>
+
+        <div className="px-8 pt-4 pb-9">
           {/* Logo + tagline */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
