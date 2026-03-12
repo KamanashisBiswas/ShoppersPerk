@@ -546,7 +546,7 @@ export default function ProductGallerySection({
       </div>
 
       {/* ── Body ────────────────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 px-4 pb-12">
+      <div className="container mx-auto flex flex-col lg:flex-row gap-6 px-4 pb-12">
         {/* ── Left Sidebar — desktop only ──────────────────────────── */}
         <motion.aside
           initial={{ opacity: 0, x: -40 }}
@@ -647,7 +647,7 @@ export default function ProductGallerySection({
 
           {/* Product Grid */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-10">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-4 gap-y-10">
               {filteredProducts.map((product, index) => (
                 <motion.div
                   key={product.id}
