@@ -281,7 +281,7 @@ export default function Carousel() {
   // Loading State - Mobile height increased significantly
   if (loading) {
     return (
-      <div className="w-full h-[90svh] min-h-[750px] lg:h-[100svh] lg:min-h-[800px] bg-gray-900 flex items-center justify-center">
+      <div className="w-full h-svh md:h-screen lg:h-svh bg-gray-900 flex items-center justify-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-500"></div>
       </div>
     );
@@ -292,7 +292,7 @@ export default function Carousel() {
   }
 
   return (
-    <div className="relative w-full h-[90svh] min-h-[750px] lg:h-[100svh] lg:min-h-[800px] overflow-hidden bg-gray-900">
+    <div className="relative w-full h-svh md:h-screen lg:h-svh lg:min-h-200 overflow-hidden bg-gray-900">
       {/* Full Screen Background Image */}
       <AnimatePresence>
         <motion.div
@@ -366,7 +366,7 @@ export default function Carousel() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-3xl md:text-5xl lg:text-[4rem] font-light leading-tight text-white opacity-90 break-words drop-shadow-lg"
+              className="text-3xl md:text-5xl lg:text-[4rem] font-light leading-tight text-white opacity-90 wrap-break-word drop-shadow-lg"
             >
               {currentData.title}
             </motion.h2>
@@ -375,7 +375,7 @@ export default function Carousel() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-4xl md:text-6xl lg:text-[5rem] font-medium leading-tight mb-4 md:mb-6 text-white italic break-words drop-shadow-lg"
+              className="text-4xl md:text-6xl lg:text-[5rem] font-medium leading-tight mb-4 md:mb-6 text-white italic wrap-break-word drop-shadow-lg"
             >
               {currentData.subtitle}
             </motion.h3>
@@ -384,7 +384,7 @@ export default function Carousel() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-white text-sm md:text-base lg:text-lg leading-relaxed mb-6 md:mb-10 ml-auto break-words drop-shadow-md"
+              className="text-white text-sm md:text-base lg:text-lg leading-relaxed mb-6 md:mb-10 ml-auto wrap-break-word drop-shadow-md"
             >
               {currentData.description}
             </motion.p>
@@ -406,7 +406,7 @@ export default function Carousel() {
             >
               <Link
                 href={currentData.href || "/"}
-                className="bg-[#F37199] text-white px-6 py-2 md:px-8 md:py-3 rounded-md shadow-md hover:bg-[#d65d83] transition-colors font-medium text-sm md:text-base"
+                className="inline-flex items-center bg-[#F37199] text-white px-6 py-2 md:px-8 md:py-2 rounded-md shadow-md hover:bg-[#d65d83] transition-colors font-medium text-sm md:text-base whitespace-nowrap"
               >
                 Explore
               </Link>
